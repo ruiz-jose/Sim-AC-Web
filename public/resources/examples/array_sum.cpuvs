@@ -1,0 +1,21 @@
+LOOP:          LDA INDEX
+               CMP ARR_LENGTH
+               JZ END_LOOP
+               ADD #1
+               STA INDEX
+               LDA SUM
+A:             ADD ARRAY
+               STA SUM
+               LDA A
+               ADD #2
+               STA A
+               JMP LOOP
+END_LOOP:      HLT
+INDEX:         0
+SUM:           0
+ARR_LENGTH:    5
+ARRAY:         0
+               1
+               2
+               3
+               4

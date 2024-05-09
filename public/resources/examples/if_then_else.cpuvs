@@ -1,0 +1,16 @@
+               LDA X
+               CMP #3
+               JNZ ELSE
+THEN:          LDA #5
+               ADD Y
+               STA Y
+               JMP ENDIF
+ELSE:          LDA #2
+               ADD Z
+               STA Z
+ENDIF:         LDA #8
+               STA X
+               HLT
+X:             3
+Y:             0
+Z:             0
