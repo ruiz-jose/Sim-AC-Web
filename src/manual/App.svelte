@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>{$text.page_title} - CPU Visual Simulator</title>
+	<title>{$text.page_title} - Sim-AC</title>
 </svelte:head>
 
 <Header />

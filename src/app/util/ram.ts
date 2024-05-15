@@ -3,7 +3,7 @@ import { WORD_SIZE } from "./cpu"
 /** First Ram address */
 export const FIRST_ADDRESS = 0
 /** Last Ram address */
-export const LAST_ADDRESS = 254
+export const LAST_ADDRESS = 31
 
 /**
  * Converts a Ram address to and index (that starts from 0)
