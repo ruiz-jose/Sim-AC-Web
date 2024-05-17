@@ -101,32 +101,32 @@ ENDWHILE
 		</CodeBlock>
 		<!-- prettier-ignore -->
 		<CodeBlock>
-SUM = 0
-COUNT = 0
-WHILE COUNT != MAX
-DO
-	COUNT = COUNT + 1
-	SUM = SUM + COUNT
-ENDWHILE
+X = 1
+SUMA = 0
+while X != 10:  # sumar númemros del 1 al 9
+	SUMA = SUMA + x
+	X = X + 1
+print(SUMA)
 		</CodeBlock>
 		<!-- prettier-ignore -->
 		<CodeBlock>
 			<!-- &zwnj; is there so that leading whitespaces are not removed, it should be an invisible character -->
-&zwnj;               LDA #0
-               STA SUM
-               STA COUNT
-WHILE:         LDA COUNT
-               CMP MAX
+&zwnj;               LDA X
+WHILE:         SUB DIEZ
                JZ ENDWHILE
-               ADD #1
-               STA COUNT
-               ADD SUM
-               STA SUM
+               LDA DIEZ
+               ADD X
+               STA DIEZ
+               LDA X
+			   ADD UNO
+			   STA X
                JMP WHILE
-ENDWHILE:      HLT
-MAX:           5
-COUNT:         0
-SUM:           0
+ENDWHILE:      STA SUMA
+			   HLT	
+X:             1
+UNO:           1
+DIEZ:          10
+SUMA:           0
 		</CodeBlock>
 	</div>
 </Section>
