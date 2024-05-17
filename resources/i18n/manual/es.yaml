@@ -7,7 +7,7 @@ sections:
       introduction:
         title: "Introducción"
         text: |
-          CPU Visual Simulator le permite ingresar y visualizar la ejecución de código en lenguaje ensamblador.
+          Sim-AC le permite ingresar y visualizar la ejecución de código en lenguaje ensamblador.
           Las instrucciones y los datos numéricos se pueden insertar o modificar directamente en la RAM. Es posible definir
           "labels" (etiquetas que se usarán en vez de las direcciones de memoria): estas labels pueden ser usadas como
           parámetros en instrucciones de salto o como identificadores de variables. 
@@ -52,11 +52,11 @@ sections:
       code_files:
         title: "Archivos de código"
         paragraphs:
-          - 'CPUVS puede cargar/guardar programas de/como simples archivos de texto que tengan la extención ".cpuvs"'
+          - 'Sim-AC puede cargar/guardar programas de/como simples archivos de texto que tengan la extención ".ac"'
       new_lines:
         title: "Nuevas líneas"
         paragraphs:
-          - "En un archivo .cpuvs, cada línea puede contener una sola instrucción."
+          - "En un archivo .ac, cada línea puede contener una sola instrucción."
           - "Una línea que no contiene una instrucción válida puede contener un comentario."
           - "Las líneas vacías están permitidas y serán ignoradas."
           - "El contenido de cada línea se almacenará en una dirección de memoria comenzando de la dirección 0."
@@ -76,7 +76,7 @@ sections:
     title: "Ejemplos"
     subsections:
       if_then_else:
-        title: "Ejemplo de IF-THEN-ELSE de alto nivel y su traducción"
+        title: "Ejemplo de IF(EQUAL)THEN-ELSE de alto nivel y su traducción"
       do_while:
         title: "Ejemplo de WHILE-DO de alto nivel y su traducción"
 opcodes_table:
@@ -89,18 +89,11 @@ opcodes_table:
     HLT: "Detener la ejecución"
     JMP: "Salto incondicional a la instrucción en la dirección de memoria X"
     JZ: "Salta si es Cero: si la Flag Z contiene el valor 1, salta a la instrucción en la dirección de memoria X; de lo contrario, pasa a la siguiente instrucción"
-    JNZ: "Salta si no es Cero: si la Flag Z contiene el valor 0, salta a la instrucción en la dirección de memoria X; de lo contrario, pasa a la siguiente instrucción"
-    JN: "Salta si es Negativo: si la Flag N contiene el valor 1, salta a la instrucción en la dirección de memoria X; de lo contrario, pasa a la siguiente instrucción"
-    JNN: "Salta si no es Negativo: si la Flag N contiene el valor 0, salta a la instrucción en la dirección de memoria X; de lo contrario, pasa a la siguiente instrucción"
-    LOD: "Carga contenido de la dirección de memoria X (o el número #X) en el Acumulador"
-    STO: "Guarda el valor del Acumulador en la dirección de memoria X"
+    JC: "Salta si es Negativo o si AC < Dato: si la Flag C contiene el valor 1, salta a la instrucción en la dirección de memoria X; de lo contrario, pasa a la siguiente instrucción"
+    LDA: "Carga contenido de la dirección de memoria X (o el número #X) en el Acumulador"
+    STA: "Guarda el valor del Acumulador en la dirección de memoria X"
     ADD: "Suma el contenido de la dirección de memoria X (o el número #X) al Acumulador. El Registro de Estado se actualiza"
-    SUB: "Resta el contenido de la dirección de memoria X (o el número #X) del Acumulador. El Registro de Estado se actualiza"
-    MUL: "Multiplica el Acumulador por el contenido de la dirección de memoria X (o el número #X). El Registro de Estado se actualiza"
-    DIV: "Divide el Acumulador por el contenido de la dirección de memoria X (o el número #X). El Registro de Estado se actualiza"
-    AND: "Operador lógico AND entre el Acumulador y el contenido de la dirección de memoria X (o número #X). El Registro de Estado se actualiza"
-    CMP: "Resta el contenido de la dirección de memoria X (o el número #X) del Acumulador. El Registro de Estado se actualiza, pero el contenido del Acumulador no se modifica"
-    NOT: "Operador lógico NOT del contenido de la dirección de memoria X (o número #X). El resultado se guarda en el Acumulador"
+    SUB: "Resta el contenido de la dirección de memoria X (o el número #X) del Acumulador. El Registro de Estado se actualiza"    
 shortcuts_table:
   ram_editing:
     title: "Modificación RAM"
