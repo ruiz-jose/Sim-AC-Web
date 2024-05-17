@@ -19,7 +19,7 @@
 		if (filename === "") {
 			return
 		}
-		download(exportProgram($ramStore, $symbolTableStore), `${filename}.cpuvs`)
+		download(exportProgram($ramStore, $symbolTableStore), `${filename}.ac`)
 		filename = ""
 		logger.debug("Program saved to file", LogCategory.USER_INPUT)
 		dispatch("close")
