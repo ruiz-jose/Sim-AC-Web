@@ -14,33 +14,33 @@
 
 <div
 	class="       
-        flex
-        items-center
-        justify-center
-        gap-1
+		flex
+		items-center
+		justify-center
+		gap-1
 		select-none
-        {disabled ? 'cursor-default' : 'cursor-pointer'}
-        {$$restProps.class}
-    "
+		{disabled ? 'cursor-default' : 'cursor-pointer'}
+		{$$restProps.class}
+	"
 	on:click={handleClick}
 	on:focus
 	on:focusout
 	on:mouseenter
 	on:mouseleave
 	on:mouseover
-	{disabled}
+	aria-hidden="true"
 >
 	<div
 		class="
-            w-4
-            h-4
-            border
-            border-black
-            rounded-md
-            transition-colors
-            {checked ? 'bg-[#0F0]' : ''}
-            {disabled ? 'brightness-[.6]' : ''}
-        "
+			w-4
+			h-4
+			border
+			border-black
+			rounded-md
+			transition-colors
+			{checked ? 'bg-[#0F0]' : ''}
+			{disabled ? 'brightness-[.6]' : ''}
+		"
 	/>
 	<div class="font-medium pb-[3px]"><slot /></div>
 </div>

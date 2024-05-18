@@ -50,7 +50,7 @@
 	on:mouseenter
 	on:mouseleave
 	on:mouseover
-	{disabled}
+	aria-hidden="true"
 >
 	<div
 		class="
