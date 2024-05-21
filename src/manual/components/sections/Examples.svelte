@@ -4,7 +4,7 @@
 	import Section from "../Section.svelte"
 </script>
 
-<Section title={$text.sections.examples.subsections.if_then_else.title}>
+<Section title={$text.sections.examples.subsections.if_equal_then_else.title}>
 	<div class="w-full flex flex-wrap justify-center gap-10">
 		<!-- prettier-ignore -->
 		<CodeBlock>
@@ -46,7 +46,7 @@ Z:             0
 		</CodeBlock>
 	</div>
 </Section>
-<Section title={$text.sections.examples.subsections.if_then_else.title}>
+<Section title={$text.sections.examples.subsections.if_less_then_else.title}>
 	<div class="w-full flex flex-wrap justify-center gap-10">
 		<!-- prettier-ignore -->
 		<CodeBlock>

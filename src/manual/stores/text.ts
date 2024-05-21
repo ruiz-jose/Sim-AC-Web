@@ -76,9 +76,12 @@ const _default = {
 		examples: {
 			title: "",
 			subsections: {
-				if_then_else: {
+				if_equal_then_else: {
 					title: ""
 				},
+				if_less_then_else: {
+					title: ""
+				},			
 				do_while: {
 					title: ""
 				}
@@ -92,22 +95,16 @@ const _default = {
 			arithmetic_logic: ""
 		},
 		descriptions: {
-			NOP: "",
-			HLT: "",
-			JMP: "",
-			JZ: "",
-			JNZ: "",
-			JN: "",
-			JNN: "",
-			LDA: "",
-			STA: "",
 			ADD: "",
 			SUB: "",
-			MUL: "",
-			DIV: "",
-			AND: "",
-			CMP: "",
-			NOT: ""
+			LDA: "",
+			STA: "",
+			JMP: "",
+			JZ: "",
+			JC: "",			
+			LDI: "",
+			NOP: "",
+			HLT: ""
 		}
 	},
 	shortcuts_table: {

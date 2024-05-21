@@ -24,7 +24,7 @@ sections:
       instruction_structure:
         title: "Estructura de la instrucción"
         opcode_desc: "Determina la operación a ejecutar"
-        immediate_flag_desc: "Determina si el operando es inmediato o directo"
+        immediate_flag_desc: "Indica que se debe acceder al contenido de la dirección de memoria"
         operand_desc: "El valor sobre el cual opera la instrucción"
       addressing_modes:
         title: "Modos de direccionamiento"
@@ -32,15 +32,13 @@ sections:
           immediate:
             title: "Inmediato"
             paragraphs:
-              - 'Un operando inmediato es un operando precedido por el símbolo "#".'
-              - "El valor de un operando inmediato debe estar en el rango de 8 bits (de 127 a -128)."
-              - "Si el operando es una label, se utilizará como operando la dirección a la que está asociada esa label."
+               - "El valor de un operando inmediato debe estar en el rango de 5 bits (de 0 a 31)."
           direct:
             title: "Directo"
             paragraphs:
-              - 'Un operando sin el símbolo "#" es un operando directo.'
+              - 'Un operando directo se encierra entre corchetes mediates los símbolos "[]".'
               - "Un operando directo representa la dirección de memoria donde se almacena el valor del operando."
-              - "Un operando directo debe ser una dirección de memoria válida, por lo que debe ser un valor entre 0 y 254 o una label válida."
+              - "Un operando directo debe ser una dirección de memoria válida, por lo que debe ser un valor entre 0 y 31 o una label válida."
   keyboard_shortcuts:
     title: "Atajos de teclado"
     subsections:
@@ -75,8 +73,10 @@ sections:
   examples:
     title: "Ejemplos"
     subsections:
-      if_then_else:
+      if_equal_then_else:
         title: "Ejemplo de IF(EQUAL)THEN-ELSE de alto nivel y su traducción"
+      if_less_then_else:
+        title: "Ejemplo de IF(LESS)THEN-ELSE de alto nivel y su traducción"
       do_while:
         title: "Ejemplo de WHILE-DO de alto nivel y su traducción"
 opcodes_table:
@@ -90,10 +90,11 @@ opcodes_table:
     JMP: "Salto incondicional a la instrucción en la dirección de memoria X"
     JZ: "Salta si es Cero: si la Flag Z contiene el valor 1, salta a la instrucción en la dirección de memoria X; de lo contrario, pasa a la siguiente instrucción"
     JC: "Salta si es Negativo o si AC < Dato: si la Flag C contiene el valor 1, salta a la instrucción en la dirección de memoria X; de lo contrario, pasa a la siguiente instrucción"
-    LDA: "Carga contenido de la dirección de memoria X (o el número #X) en el Acumulador"
-    STA: "Guarda el valor del Acumulador en la dirección de memoria X"
-    ADD: "Suma el contenido de la dirección de memoria X (o el número #X) al Acumulador. El Registro de Estado se actualiza"
-    SUB: "Resta el contenido de la dirección de memoria X (o el número #X) del Acumulador. El Registro de Estado se actualiza"    
+    LDA: "Carga contenido de la dirección de memoria [X]  en el Acumulador"
+    STA: "Guarda el valor del Acumulador en la dirección de memoria [X]"
+    ADD: "Suma el contenido de la dirección de memoria [X] al Acumulador. El Registro de Estado se actualiza"
+    SUB: "Resta el contenido de la dirección de memoria [X] del Acumulador. El Registro de Estado se actualiza"   
+    LDI: "Carga el número X en el Acumulador" 
 shortcuts_table:
   ram_editing:
     title: "Modificación RAM"
