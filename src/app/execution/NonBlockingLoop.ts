@@ -51,7 +51,7 @@ export default class NonBlockingLoop {
 	/** Stops the execution of the loop */
 	stop(): void {
 		if (this.intervalId !== null) {
-			clearInterval(this.intervalId)
+			clearInterval(this.intervalId as unknown as number)
 			this.intervalId = null
 		}
 	}

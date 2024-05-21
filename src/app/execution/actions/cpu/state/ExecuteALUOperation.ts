@@ -17,12 +17,14 @@ export default class ExecuteALUOperation extends CpuAction {
 		const alu1 = cpu.alu1.get().signed()
 		const alu2 = cpu.alu2.get().signed()
 
+		// Validación de entrada
+		if (typeof alu1 !== 'number' || typeof alu2 !== 'number') {
+			throw new Error(`Invalid input: alu1 and alu2 should be numbers, got ${typeof alu1} and ${typeof alu2}`);
+		}
+
 		let result: number
 
 		switch (operation) {
-			case "&":
-				result = alu1 & alu2
-				break
 			case "+":
 				result = alu1 + alu2
 				break
@@ -32,11 +34,10 @@ export default class ExecuteALUOperation extends CpuAction {
 			case "=":
 				result = alu2
 				break
-			case ":":
 			case "":
 			default:
 				throw new Error(`Unexpected ALU operation: "${operation}"`)
 		}
-		cpu.aluResult.set(new BinaryValue(16, result))
+		cpu.aluResult.set(new BinaryValue(8, result))
 	}
 }
