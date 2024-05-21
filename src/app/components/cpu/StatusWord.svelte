@@ -70,6 +70,7 @@
 		"
 		bind:this={swzDiv}
 		on:click={toggleZeroFlag}
+		on:keydown={toggleZeroFlag}
 	>
 		<ComponentLabel text="Z" bottom="-21px" left="25%" />
 		{$zeroFlag ? "1" : "0"}
@@ -88,6 +89,7 @@
 		"
 		bind:this={swnDiv}
 		on:click={toggleNegativeFlag}
+		on:keydown={toggleNegativeFlag}
 	>
 		<ComponentLabel text="C" bottom="-21px" left="25%" />
 		{$negativeFlag ? "1" : "0"}
