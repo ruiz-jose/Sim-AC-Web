@@ -23,10 +23,9 @@ Y = 3
 Z = 0
 if X == Y: # condición ==
 	Z = 1
-	print('Z = 1 => X es igual que Y')
 else:
 	Z = 0
-	print('Z = 0 => X es distinto que Y')
+
 		</CodeBlock>
 		<!-- prettier-ignore -->
 		<CodeBlock>
@@ -65,11 +64,9 @@ Y = 3
 C = 0
 if X less Y:    # condición menor
 	C = 1
-	print('C = 1 => X es menor que Y')
 else:
 	C = 0
-	print('C = 0 => X es mayor o igual que Y')
-		</CodeBlock>
+</CodeBlock>
 		<!-- prettier-ignore -->
 		<CodeBlock>
 			<!-- &zwnj; is there so that leading whitespaces are not removed, it should be an invisible character -->
@@ -106,7 +103,7 @@ SUMA = 0
 while X != 10:  # sumar númemros del 1 al 9
 	SUMA = SUMA + x
 	X = X + 1
-print(SUMA)
+
 		</CodeBlock>
 		<!-- prettier-ignore -->
 		<CodeBlock>
