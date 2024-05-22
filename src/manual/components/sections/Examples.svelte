@@ -33,10 +33,10 @@ else:
 &zwnj;               LDA X
                SUB Y
                JZ THEN
-	           LDA #0
+	           LDI #0
                ADD Y
                JMP ENDIF
-THEN:          LDA #1
+THEN:          LDI #1
 ENDIF:         STA Z               
                HLT
 X:             3
@@ -73,10 +73,10 @@ else:
 &zwnj;               LDA X
                SUB Y
                JC LESS
-	           LDA #0
+	           LDI #0
                ADD Y
                JMP ENDIF
-LESS:          LDA #1
+LESS:          LDI #1
 ENDIF:         STA Z               
                HLT
 X:             2
@@ -123,7 +123,7 @@ ENDWHILE:      STA SUMA
 X:             1
 UNO:           1
 DIEZ:          10
-SUMA:           0
+SUMA:          0
 		</CodeBlock>
 	</div>
 </Section>
