@@ -1,0 +1,16 @@
+               LDA X
+WHILE:         SUB DIEZ
+               JZ ENDWHILE
+               LDA DIEZ
+               ADD X
+               STA DIEZ
+               LDA X
+               ADD UNO
+               STA X
+               JMP WHILE
+ENDWHILE:      STA SUMA
+               HLT
+X:             1
+UNO:           1
+DIEZ:          10
+SUMA:          0

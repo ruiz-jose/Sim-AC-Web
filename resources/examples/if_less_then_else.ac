@@ -1,12 +1,12 @@
                LDA X
                SUB Y
-               JZ THEN
-               LDA #0
+               JC LESS
+               LDI #0
                ADD Y
                JMP ENDIF
-THEN:          LDA #1
+LESS:          LDI #1
 ENDIF:         STA Z               
                HLT
-X:             3
+X:             2
 Y:             3
 Z:             0
