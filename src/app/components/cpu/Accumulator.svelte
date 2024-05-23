@@ -40,9 +40,9 @@
 			let newValue: BinaryValue
 			try {
 				if ($displayAsBinary) {
-					newValue = new BinaryValue(16, inputValue)
+					newValue = new BinaryValue(8, inputValue)
 				} else {
-					newValue = new BinaryValue(16, parseInt(inputValue))
+					newValue = new BinaryValue(8, parseInt(inputValue))
 				}
 				accumulator.set(newValue)
 			} catch (error) {
