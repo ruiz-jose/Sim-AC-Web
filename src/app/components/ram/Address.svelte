@@ -36,7 +36,7 @@
 	style:background-color={$extAddressBusColor}
 	bind:this={addressDiv}
 >
-	{$displayAsBinary ? new BinaryValue(8, address).toBinaryString() : address}
+	{$displayAsBinary ? new BinaryValue(5, address).toBinaryString() : address}
 </div>
 
 <style lang="scss">
