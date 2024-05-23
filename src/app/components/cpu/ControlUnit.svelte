@@ -28,7 +28,7 @@
 		flex
 		items-center
 		justify-center
-		text-center	
+		text-center
 	"
 	bind:this={cuDiv}
 >

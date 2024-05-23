@@ -19,7 +19,7 @@
 
 export const SUPPORTED_LANGUAGES = ["en", "it", "es"] as const
 export const DEFAULT_LANGUAGE = "en"
-export type Language = typeof SUPPORTED_LANGUAGES[number]
+export type Language = (typeof SUPPORTED_LANGUAGES)[number]
 
 export function getDefaultLanguage(): Language {
 	let lang = navigator.languages !== undefined ? navigator.languages[0] : navigator.language
