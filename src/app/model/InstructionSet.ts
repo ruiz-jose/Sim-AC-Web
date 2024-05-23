@@ -12,6 +12,7 @@ export const opcodes = [
 		numeric: 0,
 		takesOperand: true,
 		takesImmediate: false,
+		direct: true,
 		operator: "+",
 		category: "ARITHMETIC_LOGIC"
 	},
@@ -20,6 +21,7 @@ export const opcodes = [
 		numeric: 1,
 		takesOperand: true,
 		takesImmediate: false,
+		direct: true,
 		operator: "-",
 		category: "ARITHMETIC_LOGIC"
 	},
@@ -36,6 +38,7 @@ export const opcodes = [
 		numeric: 3,
 		takesOperand: true,
 		takesImmediate: false,
+		direct: true,		
 		operator: "",
 		category: "DATA_FLOW"
 	},
@@ -44,6 +47,7 @@ export const opcodes = [
 		numeric: 4,
 		takesOperand: true,
 		takesImmediate: false,
+		direct: false,
 		operator: "",
 		category: "CONTROL_FLOW"
 	},
@@ -52,6 +56,7 @@ export const opcodes = [
 		numeric: 5,
 		takesOperand: true,
 		takesImmediate: false,
+		direct: false,
 		operator: "",
 		category: "CONTROL_FLOW"
 	},
@@ -60,6 +65,7 @@ export const opcodes = [
 		numeric: 6,
 		takesOperand: true,
 		takesImmediate: false,
+		direct: false,
 		operator: "",
 		category: "CONTROL_FLOW"
 	},
@@ -68,6 +74,7 @@ export const opcodes = [
 		numeric: 7,
 		takesOperand: true,
 		takesImmediate: true,
+		direct: false,
 		operator: "",
 		category: "DATA_FLOW"
 	},
@@ -76,6 +83,7 @@ export const opcodes = [
 		numeric: 8,
 		takesOperand: false,
 		takesImmediate: false,
+		direct: false,
 		operator: "",
 		category: "CONTROL_FLOW"
 	},
@@ -84,6 +92,7 @@ export const opcodes = [
 		numeric: 9,
 		takesOperand: false,
 		takesImmediate: false,
+		direct: false,
 		operator: "",
 		category: "CONTROL_FLOW"
 	}
