@@ -90,9 +90,12 @@ menu:
         simple_add:
           text: "Simple add"
           title: "Simple add"
-        if_then_else:
-          text: "If then else"
-          title: "If then else"
+        if_equal_then_else:
+          text: "If equal then else"
+          title: "If equal then else"
+        if_less_then_else:
+          text: "If less then else"
+          title: "If less then else"
         while_do:
           text: "While do"
           title: "While do"

@@ -9,7 +9,7 @@
 
 	async function loadProgram(): Promise<void> {
 		try {
-			const file = (await upload(".cpuvs"))[0]
+			const file = (await upload(".ac"))[0]
 			const program = parseProgram(await file.text())
 			symbolTableStore.get().import(program.symbolTable)
 			ramStore.get().import(program.ram)

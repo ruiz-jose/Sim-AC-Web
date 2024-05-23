@@ -11,7 +11,7 @@ export const opcodes = [
 		symbolic: "ADD",
 		numeric: 0,
 		takesOperand: true,
-		takesImmediate: true,
+		takesImmediate: false,
 		operator: "+",
 		category: "ARITHMETIC_LOGIC"
 	},
@@ -19,7 +19,7 @@ export const opcodes = [
 		symbolic: "SUB",
 		numeric: 1,
 		takesOperand: true,
-		takesImmediate: true,
+		takesImmediate: false,
 		operator: "-",
 		category: "ARITHMETIC_LOGIC"
 	},
@@ -27,7 +27,7 @@ export const opcodes = [
 		symbolic: "LDA",
 		numeric: 2,
 		takesOperand: true,
-		takesImmediate: true,
+		takesImmediate: false,
 		operator: "=",
 		category: "DATA_FLOW"
 	},
@@ -64,12 +64,12 @@ export const opcodes = [
 		category: "CONTROL_FLOW"
 	},
 	{
-		symbolic: "HLT",
+		symbolic: "LDI",
 		numeric: 7,
-		takesOperand: false,
-		takesImmediate: false,
+		takesOperand: true,
+		takesImmediate: true,
 		operator: "",
-		category: "CONTROL_FLOW"
+		category: "DATA_FLOW"
 	},
 	{
 		symbolic: "NOP",
@@ -80,36 +80,12 @@ export const opcodes = [
 		category: "CONTROL_FLOW"
 	},
 	{
-		symbolic: "JNZ",
+		symbolic: "HLT",
 		numeric: 9,
-		takesOperand: true,
+		takesOperand: false,
 		takesImmediate: false,
 		operator: "",
 		category: "CONTROL_FLOW"
-	},
-	{
-		symbolic: "JNC",
-		numeric: 10,
-		takesOperand: true,
-		takesImmediate: false,
-		operator: "",
-		category: "CONTROL_FLOW"
-	},
-	{
-		symbolic: "AND",
-		numeric: 12,
-		takesOperand: true,
-		takesImmediate: true,
-		operator: "&",
-		category: "ARITHMETIC_LOGIC"
-	},
-	{
-		symbolic: "CMP",
-		numeric: 13,
-		takesOperand: true,
-		takesImmediate: true,
-		operator: ":",
-		category: "ARITHMETIC_LOGIC"
 	}
 ] as const
 

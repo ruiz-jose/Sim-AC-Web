@@ -64,7 +64,7 @@
 				class="border-2 border-black rounded-md"
 				bind:value={filename}
 			/>
-			<span class="ml-1">.cpuvs</span>
+			<span class="ml-1">.ac</span>
 		</div>
 		<div class="flex items-center justify-center gap-2">
 			<BlueButton title={$text.menu.overlays.save_to_file.buttons.save.title} on:click={onSave}>

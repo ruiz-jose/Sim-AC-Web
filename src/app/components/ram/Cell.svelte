@@ -109,6 +109,7 @@
 		{$$restProps.class}
 	"
 	on:click={select}
+	on:keydown={select}
 	bind:this={cell}
 >
 	{#if isSelected}

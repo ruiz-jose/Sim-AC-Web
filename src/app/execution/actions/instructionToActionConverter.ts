@@ -36,7 +36,6 @@ export function instructionToActions(instruction: Instruction): Action[] {
 	switch (instruction.opcode.symbolic) {
 		case "ADD":
 		case "SUB":
-		case "AND":
 			actions.push(
 				...SET_MUX,
 				...SET_ALU_OPERATION,
@@ -57,22 +56,6 @@ export function instructionToActions(instruction: Instruction): Action[] {
 					new StepText("alu_to_sw")
 				),
 				new UpdateSW().thenWaitFor(TTS_FINISHED).endstep()
-			)
-			break
-
-		case "CMP":
-			actions.push(
-				...SET_MUX,
-				...SET_ALU_OPERATION,
-				...LOAD_ALU1_FROM_ACC,
-				...LOAD_ALU2(instruction.immediateFlag()),
-				new Parallel(
-					// new LoadValueOnBus(?, "data_alu_sw"),
-					new FlashWire("ALU:3", "SW:1"),
-					new ReadStep("alu_to_sw"),
-					new StepText("alu_to_sw")
-				),
-				new UpdateSWCompare().thenWaitFor(TTS_FINISHED).endstep()
 			)
 			break
 
@@ -127,16 +110,8 @@ export function instructionToActions(instruction: Instruction): Action[] {
 			actions.push(new FlashCpu("SW:Z"), ...SET_PC_TO_IR_OPERAND_IF_ZERO_FLAG)
 			break
 
-		case "JNZ":
-			actions.push(new FlashCpu("SW:Z"), ...SET_PC_TO_IR_OPERAND_IF_NOT_ZERO_FLAG)
-			break
-
 		case "JC":
 			actions.push(new FlashCpu("SW:N"), ...SET_PC_TO_IR_OPERAND_IF_NEGATIVE_FLAG)
-			break
-
-		case "JNC":
-			actions.push(new FlashCpu("SW:N"), ...SET_PC_TO_IR_OPERAND_IF_NOT_NEGATIVE_FLAG)
 			break
 
 		case "NOP":

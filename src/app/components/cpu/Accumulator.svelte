@@ -40,9 +40,9 @@
 			let newValue: BinaryValue
 			try {
 				if ($displayAsBinary) {
-					newValue = new BinaryValue(16, inputValue)
+					newValue = new BinaryValue(8, inputValue)
 				} else {
-					newValue = new BinaryValue(16, parseInt(inputValue))
+					newValue = new BinaryValue(8, parseInt(inputValue))
 				}
 				accumulator.set(newValue)
 			} catch (error) {
@@ -106,6 +106,11 @@
 	on:click={() => (isEditing = true)}
 	on:keydown={event => {
 		if (event.key === "Enter" || event.key === " ") {
+			isEditing = true
+		}
+	}}
+	on:keydown={event => {
+		if (event.key === "Enter") {
 			isEditing = true
 		}
 	}}

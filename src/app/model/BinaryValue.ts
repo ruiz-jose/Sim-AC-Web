@@ -10,7 +10,7 @@ import {
 import { positionToIndex } from "../../shared/util/string"
 
 /** The allowed sizes for a BinaryValue instance in bits */
-export type BinaryValueSize = 8 | 16 | 32
+export type BinaryValueSize = 3 | 5 | 8 | 16 | 32
 
 /** Represents a numeric value */
 export default class BinaryValue {
@@ -19,7 +19,7 @@ export default class BinaryValue {
 
 	/**
 	 *
-	 * @param {BinaryValueSize} bits - The size of the value in bits. Can be either 8, 16 or 32
+	 * @param {BinaryValueSize} bits - The size of the value in bits. Can be either 3, 5, 8, 16 or 32
 	 * @param {number|string|BinaryValue} value - Can either be a number (both signed or unsigned),
 	 * a string (only a string that represents a binary value) or another BinaryValue
 	 */

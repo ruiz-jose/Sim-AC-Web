@@ -41,9 +41,9 @@
 			let newValue: BinaryValue
 			try {
 				if ($displayAsBinary) {
-					newValue = new BinaryValue(8, inputValue)
+					newValue = new BinaryValue(5, inputValue)
 				} else {
-					newValue = new BinaryValue(8, parseInt(inputValue))
+					newValue = new BinaryValue(5, parseInt(inputValue))
 				}
 			} catch (error) {
 				throw new CheckedError($text.errors.user_input.invalid_pc_value)
@@ -107,6 +107,11 @@
 "
 	bind:this={element}
 	on:click={() => (isEditing = true)}
+	on:keydown={event => {
+		if (event.key === "Enter") {
+			isEditing = true
+		}
+	}}
 	on:keydown={event => {
 		if (event.key === "Enter") {
 			isEditing = true

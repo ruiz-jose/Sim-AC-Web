@@ -1,10 +1,10 @@
                LDA X
                SUB Y
-               JZ THEN
-               LDA #0
+               JZ EQUAL
+               LDI #0
                ADD Y
                JMP ENDIF
-THEN:          LDA #1
+EQUAL:          LDI #1
 ENDIF:         STA Z               
                HLT
 X:             3

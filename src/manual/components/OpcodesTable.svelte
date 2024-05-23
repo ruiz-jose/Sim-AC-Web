@@ -7,22 +7,29 @@
 	function direct(opcode: Opcode): string {
 		let symbolic = opcode.symbolic
 		if (opcode.takesOperand) {
-			symbolic += " X"
+			if (opcode.category === "CONTROL_FLOW" || opcode.takesImmediate) {
+				symbolic += " X"
+			} else {
+				symbolic += " [X]"
+			}
 		}
-		let binary = numberToBinaryString(opcode.numeric, 8)
-		return `${symbolic} ${binary}`
+
+		let binary = numberToBinaryString(opcode.numeric, 4)
+		//return `${symbolic} ${binary}`
+		return `${symbolic}`
 	}
 
 	function immediate(opcode: Opcode): string {
 		if (!opcode.takesImmediate) {
 			return ""
 		}
-		let symbolic = `${opcode.symbolic} #X`
-		return `${symbolic} ${binaryOpcodeWithImmediateFlagSet(opcode.numeric)}`
+		let symbolic = `${opcode.symbolic} X`
+		//return `${symbolic} ${binaryOpcodeWithImmediateFlagSet(opcode.numeric)}`
+		return `${symbolic}`
 	}
 
 	function binaryOpcodeWithImmediateFlagSet(opcode: number): string {
-		return setBit(numberToBinaryString(opcode, 8), IMMEDIATE_FLAG_POS, true)
+		return setBit(numberToBinaryString(opcode, 4), IMMEDIATE_FLAG_POS, true)
 	}
 </script>
 
@@ -35,13 +42,13 @@
 	<!-- colgroup is in this position the last-child and first-child selectors works properly -->
 	<colgroup>
 		<col class="w-32 rounded-t" />
-		<col class="w-32" />
+		<!--<col class="w-32" />-->
 		<col class="w-[40rem] text-left" />
 	</colgroup>
 	{#each opcodes.filter(opcode => opcode.category === "CONTROL_FLOW") as opcode}
 		<tr class="bg-green-200">
 			<td>{direct(opcode)}</td>
-			<td>{immediate(opcode)}</td>
+			<!-- <td>{immediate(opcode)}</td>-->
 			<td class="text-left">{$text.opcodes_table.descriptions[opcode.symbolic]}</td>
 		</tr>
 	{/each}
@@ -53,7 +60,7 @@
 	{#each opcodes.filter(opcode => opcode.category === "DATA_FLOW") as opcode}
 		<tr class="bg-red-200">
 			<td>{direct(opcode)}</td>
-			<td>{immediate(opcode)}</td>
+			<!--<td>{immediate(opcode)}</td>-->
 			<td class="text-left">{$text.opcodes_table.descriptions[opcode.symbolic]}</td>
 		</tr>
 	{/each}
@@ -65,7 +72,7 @@
 	{#each opcodes.filter(opcode => opcode.category === "ARITHMETIC_LOGIC") as opcode}
 		<tr class="bg-purple-200">
 			<td>{direct(opcode)}</td>
-			<td>{immediate(opcode)}</td>
+			<!--<td>{immediate(opcode)}</td>-->
 			<td class="text-left">{$text.opcodes_table.descriptions[opcode.symbolic]}</td>
 		</tr>
 	{/each}

@@ -10,15 +10,19 @@
 	const examples = [
 		{
 			id: "simple_add",
-			url: "resources/examples/simple_add.cpuvs"
+			url: "resources/examples/simple_add.ac"
 		},
 		{
-			id: "if_then_else",
-			url: "resources/examples/if_then_else.cpuvs"
+			id: "if_equal_then_else",
+			url: "resources/examples/if_equal_then_else.ac"
+		},
+		{
+			id: "if_less_then_else",
+			url: "resources/examples/if_less_then_else.ac"
 		},
 		{
 			id: "while_do",
-			url: "resources/examples/while_do.cpuvs"
+			url: "resources/examples/while_do.ac"
 		},
 		{
 			id: "array_sum",
