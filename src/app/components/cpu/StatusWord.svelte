@@ -70,10 +70,12 @@
 		"
 		bind:this={swzDiv}
 		on:click={toggleZeroFlag}
+		on:keydown={toggleZeroFlag}
 	>
 		<ComponentLabel text="Z" bottom="-21px" left="25%" />
 		{$zeroFlag ? "1" : "0"}
 	</div>
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="
 			relative

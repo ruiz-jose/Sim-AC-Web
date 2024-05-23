@@ -107,6 +107,11 @@
 "
 	bind:this={element}
 	on:click={() => (isEditing = true)}
+	on:keydown={event => {
+		if (event.key === "Enter") {
+			isEditing = true
+		}
+	}}
 >
 	<ComponentLabel text="PC" top="-25px" left="0" />
 	{#if isEditing}

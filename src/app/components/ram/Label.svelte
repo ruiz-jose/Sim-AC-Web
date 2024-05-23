@@ -120,6 +120,7 @@
 		<div
 			on:input={formatInput}
 			on:click={select}
+			on:keydown={select}
 			class:firstLabel={isFirstLabel}
 			class:lastLabel={isLastLabel}
 			class="
