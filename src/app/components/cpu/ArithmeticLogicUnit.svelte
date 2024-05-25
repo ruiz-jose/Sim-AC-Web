@@ -104,6 +104,6 @@
 		"
 		bind:this={operand2Div}
 	>
-		{$displayAsBinary ? splitBinString($alu2.toBinaryString()) : $alu2.signed()}
+		{$displayAsBinary ? splitBinString($alu2.toBinaryString().slice(-8)) : $alu2.signed()}
 	</div>
 </div>

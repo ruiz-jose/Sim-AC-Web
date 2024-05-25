@@ -18,20 +18,26 @@
 	const instructionRegister = cpu.instructionRegister
 
 	$: {
-		if ($displayAsBinary) {
-			opcode = $instructionRegister.binaryOpcode()
-			operand = $instructionRegister.binaryOperand()
-		} else {
-			if ($instructionRegister.opcode) {
-				opcode = $instructionRegister.opcode.symbolic
-				if ($instructionRegister.opcode.takesOperand) {
-					if ($instructionRegister.immediateFlag()) {
-						operand = `#${$instructionRegister.numericOperand()}`
-					} else {
-						operand = `${$instructionRegister.numericOperand()}`
-					}
+		if ($instructionRegister.opcode) {
+			if ($instructionRegister.opcode.symbolic === "NOP") {
+				opcode = ""
+				operand = ""
+			} else {
+				if ($displayAsBinary) {
+					// recorto los ultimos 3 bits del opcode y los 5 del operando
+					opcode = $instructionRegister.binaryOpcode().slice(-3)
+					operand = $instructionRegister.binaryOperand().slice(-5)
 				} else {
-					operand = ""
+					opcode = $instructionRegister.opcode.symbolic
+					if ($instructionRegister.opcode.takesOperand) {
+						if ($instructionRegister.immediateFlag()) {
+							operand = `#${$instructionRegister.numericOperand()}`
+						} else {
+							operand = `${$instructionRegister.numericOperand()}`
+						}
+					} else {
+						operand = ""
+					}
 				}
 			}
 		}

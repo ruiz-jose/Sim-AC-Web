@@ -15,8 +15,18 @@
 	export let instruction: Instruction
 	export let isSelected: boolean
 
-	$: opcode = $displayAsBinary ? instruction.binaryOpcode() : instruction.symbolicOpcode
-	$: operand = $displayAsBinary ? instruction.binaryOperand() : instruction.symbolicOperand
+	let opcode: string
+	let operand: string
+
+	$: {
+		if (instruction === Instruction.NOP) {
+			opcode = ""
+			operand = ""
+		} else {
+			opcode = $displayAsBinary ? instruction.binaryOpcode().slice(-3) : instruction.symbolicOpcode
+			operand = $displayAsBinary ? instruction.binaryOperand().slice(-5) : instruction.symbolicOperand
+		}
+	}
 
 	$: onSelectedChange(isSelected)
 	$: onInstructionChange(instruction)
