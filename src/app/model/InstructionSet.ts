@@ -1,9 +1,9 @@
 import BinaryValue from "./BinaryValue"
 
-export type Opcode = typeof opcodes[number]
-export type SymbolicOpcode = typeof opcodes[number]["symbolic"]
-export type NumericOpcode = typeof opcodes[number]["numeric"]
-export type Operators = typeof opcodes[number]["operator"]
+export type Opcode = (typeof opcodes)[number]
+export type SymbolicOpcode = (typeof opcodes)[number]["symbolic"]
+export type NumericOpcode = (typeof opcodes)[number]["numeric"]
+export type Operators = (typeof opcodes)[number]["operator"]
 
 /** All the opcodes */
 export const opcodes = [
@@ -96,7 +96,6 @@ export const opcodes = [
 		operator: "",
 		category: "CONTROL_FLOW"
 	}
-
 ] as const
 
 export function opcode(param: string | BinaryValue): Opcode {

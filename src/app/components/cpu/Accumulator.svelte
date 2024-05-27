@@ -104,9 +104,14 @@
 	"
 	bind:this={element}
 	on:click={() => (isEditing = true)}
-	on:keydown={(event) => {
-		if (event.key === 'Enter') {
-			isEditing = true;
+	on:keydown={event => {
+		if (event.key === "Enter" || event.key === " ") {
+			isEditing = true
+		}
+	}}
+	on:keydown={event => {
+		if (event.key === "Enter") {
+			isEditing = true
 		}
 	}}
 >

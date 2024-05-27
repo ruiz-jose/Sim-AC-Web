@@ -37,7 +37,7 @@
 	>
 		<path d={ICONS[icon]} />
 	</svg>
-	<p class="font-semibold text-xs leading-3 ">{text}</p>
+	<p class="font-semibold text-xs leading-3">{text}</p>
 </div>
 
 <style>

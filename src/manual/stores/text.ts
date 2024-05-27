@@ -81,7 +81,7 @@ const _default = {
 				},
 				if_less_then_else: {
 					title: ""
-				},			
+				},
 				do_while: {
 					title: ""
 				}
@@ -101,7 +101,7 @@ const _default = {
 			STA: "",
 			JMP: "",
 			JZ: "",
-			JC: "",			
+			JC: "",
 			LDI: "",
 			NOP: "",
 			HLT: ""

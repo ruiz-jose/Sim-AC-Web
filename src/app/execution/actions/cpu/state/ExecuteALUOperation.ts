@@ -18,8 +18,8 @@ export default class ExecuteALUOperation extends CpuAction {
 		const alu2 = cpu.alu2.get().signed()
 
 		// Validación de entrada
-		if (typeof alu1 !== 'number' || typeof alu2 !== 'number') {
-			throw new Error(`Invalid input: alu1 and alu2 should be numbers, got ${typeof alu1} and ${typeof alu2}`);
+		if (typeof alu1 !== "number" || typeof alu2 !== "number") {
+			throw new Error(`Invalid input: alu1 and alu2 should be numbers, got ${typeof alu1} and ${typeof alu2}`)
 		}
 
 		let result: number

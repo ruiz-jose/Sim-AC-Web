@@ -9,11 +9,11 @@
 		if (opcode.takesOperand) {
 			if (opcode.category === "CONTROL_FLOW" || opcode.takesImmediate) {
 				symbolic += " X"
-			}else {
+			} else {
 				symbolic += " [X]"
-			}	
+			}
 		}
-		
+
 		let binary = numberToBinaryString(opcode.numeric, 4)
 		//return `${symbolic} ${binary}`
 		return `${symbolic}`

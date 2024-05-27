@@ -9,7 +9,8 @@ export default class Instruction extends BinaryValue {
 	readonly symbolicOpcode: string
 	readonly symbolicOperand: string
 
-	static readonly NOP: Instruction = new Instruction("", "", new BinaryValue(16, opcode("NOP").numeric))
+	//static readonly NOP: Instruction = new Instruction("NOP", "", new BinaryValue(16, opcode("NOP").numeric))
+	static readonly NOP: Instruction = new Instruction("", "", new BinaryValue(16, 2048)) // 2048 = 0b100000000000 (NOP opcode)
 
 	/**
 	 * @param {string} symOpc - The symbolic representation of the first byte of the instruction

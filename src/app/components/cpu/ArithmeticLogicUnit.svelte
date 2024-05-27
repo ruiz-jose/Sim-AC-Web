@@ -53,7 +53,7 @@
 			justify-center
 			top-[15%]
 			left-[15%]
-			w-[90px] 
+			w-[90px]
 			{$displayAsBinary ? 'top-[15%] h-[50px]' : 'top-[20%] h-[30px]'}
 			text-center
 			leading-tight
@@ -104,6 +104,6 @@
 		"
 		bind:this={operand2Div}
 	>
-		{$displayAsBinary ? splitBinString($alu2.toBinaryString()) : $alu2.signed()}
+		{$displayAsBinary ? splitBinString($alu2.toBinaryString().slice(-8)) : $alu2.signed()}
 	</div>
 </div>

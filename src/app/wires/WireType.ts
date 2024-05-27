@@ -14,7 +14,7 @@ import {
 	intControlBusAnimationColor
 } from "../store/settings"
 
-export type WireType = typeof WireTypes[keyof typeof WireTypes]
+export type WireType = (typeof WireTypes)[keyof typeof WireTypes]
 
 export const WireTypes = {
 	DATA_INT: {

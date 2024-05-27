@@ -26,8 +26,8 @@
 					<div class="text-2xl">B</div>
 				</div>
 				<div class="flex flex-col items-center ml-2 text-cyan-300">
-					<div>]</div>	
-					<div class="text-2xl">C</div>				
+					<div>]</div>
+					<div class="text-2xl">C</div>
 				</div>
 			</div>
 			<div class="mx-auto mt-7 flex flex-col items-start justify-center gap-1 w-fit">
@@ -50,8 +50,7 @@
 						class="bg-gray-500 text-cyan-300 py-2 px-3 text-xl box-border inline-block w-fit shadow-md rounded-md"
 						>C</span
 					>
-					Direct - {$text.sections.instruction_set.subsections.instruction_structure
-						.immediate_flag_desc}
+					Direct - {$text.sections.instruction_set.subsections.instruction_structure.immediate_flag_desc}
 				</p>
 			</div>
 		</div>
