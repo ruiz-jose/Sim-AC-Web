@@ -39,5 +39,10 @@ export default class ExecuteALUOperation extends CpuAction {
 				throw new Error(`Unexpected ALU operation: "${operation}"`)
 		}
 		cpu.aluResult.set(new BinaryValue(8, result))
+
+		// Limpiar los campos de la ALU después de la operación
+		cpu.alu1.set(new BinaryValue(8, 0))
+		cpu.alu2.set(new BinaryValue(8, 0))
+		cpu.aluOperation.set("")
 	}
 }
