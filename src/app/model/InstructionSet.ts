@@ -38,7 +38,7 @@ export const opcodes = [
 		numeric: 3,
 		takesOperand: true,
 		takesImmediate: false,
-		direct: true,		
+		direct: true,
 		operator: "",
 		category: "DATA_FLOW"
 	},
