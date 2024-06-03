@@ -44,5 +44,12 @@ export default class ExecuteALUOperation extends CpuAction {
 		cpu.alu1.set(new BinaryValue(8, 0))
 		cpu.alu2.set(new BinaryValue(8, 0))
 		cpu.aluOperation.set("")
+		
+		// Actualizar la bandera Z si la operación es ADD o SUB y el resultado es cero
+		if ((operation === "+" || operation === "-") && result === 0) {
+            cpu.zeroFlag.set(true)
+        } else {
+			cpu.zeroFlag.set(false)
+        }
 	}
 }

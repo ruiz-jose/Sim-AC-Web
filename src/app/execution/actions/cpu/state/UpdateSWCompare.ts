@@ -16,7 +16,7 @@ export default class UpdateSWCompare extends CpuAction {
 		const z = alu2 === alu1
 		const n = alu2 > alu1
 
-		if (z !== zeroFlag && n !== negativeFlag) {
+		if ((ctx.cpu.model.aluOperation.get() === "+" || ctx.cpu.model.aluOperation.get() === "-") && (z !== zeroFlag || n !== negativeFlag)) {
 			ctx.cpu.model.zeroFlag.set(z)
 			ctx.cpu.model.negativeFlag.set(n)
 			await Promise.all([ctx.cpu.component.flash("SW:Z"), ctx.cpu.component.flash("SW:N")])

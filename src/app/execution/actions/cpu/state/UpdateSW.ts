@@ -15,7 +15,7 @@ export default class UpdateSW extends CpuAction {
 		const z = acc === 0
 		const n = acc < 0
 
-		if (z !== zeroFlag && n !== negativeFlag) {
+		if ((ctx.cpu.model.aluOperation.get() === "+" || ctx.cpu.model.aluOperation.get() === "-") && (z !== zeroFlag || n !== negativeFlag)) {
 			ctx.cpu.model.zeroFlag.set(z)
 			ctx.cpu.model.negativeFlag.set(n)
 			await Promise.all([ctx.cpu.component.flash("SW:Z"), ctx.cpu.component.flash("SW:N")])
