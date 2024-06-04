@@ -14,7 +14,8 @@ export const opcodes = [
 		takesImmediate: false,
 		direct: true,
 		operator: "+",
-		category: "ARITHMETIC_LOGIC"
+		category: "ARITHMETIC_LOGIC",
+		pseudo: false
 	},
 	{
 		symbolic: "SUB",
@@ -23,7 +24,8 @@ export const opcodes = [
 		takesImmediate: false,
 		direct: true,
 		operator: "-",
-		category: "ARITHMETIC_LOGIC"
+		category: "ARITHMETIC_LOGIC",
+		pseudo: false
 	},
 	{
 		symbolic: "LDA",
@@ -31,7 +33,8 @@ export const opcodes = [
 		takesOperand: true,
 		takesImmediate: false,
 		operator: "=",
-		category: "DATA_FLOW"
+		category: "DATA_FLOW",
+		pseudo: false
 	},
 	{
 		symbolic: "STA",
@@ -40,7 +43,8 @@ export const opcodes = [
 		takesImmediate: false,
 		direct: true,
 		operator: "",
-		category: "DATA_FLOW"
+		category: "DATA_FLOW",
+		pseudo: false
 	},
 	{
 		symbolic: "JMP",
@@ -49,7 +53,8 @@ export const opcodes = [
 		takesImmediate: false,
 		direct: false,
 		operator: "",
-		category: "CONTROL_FLOW"
+		category: "CONTROL_FLOW",
+		pseudo: false 
 	},
 	{
 		symbolic: "JZ",
@@ -58,7 +63,8 @@ export const opcodes = [
 		takesImmediate: false,
 		direct: false,
 		operator: "",
-		category: "CONTROL_FLOW"
+		category: "CONTROL_FLOW",
+		pseudo: false
 	},
 	{
 		symbolic: "JC",
@@ -67,7 +73,8 @@ export const opcodes = [
 		takesImmediate: false,
 		direct: false,
 		operator: "",
-		category: "CONTROL_FLOW"
+		category: "CONTROL_FLOW",
+		pseudo: false
 	},
 	{
 		symbolic: "LDI",
@@ -76,7 +83,8 @@ export const opcodes = [
 		takesImmediate: true,
 		direct: false,
 		operator: "",
-		category: "DATA_FLOW"
+		category: "DATA_FLOW",
+		pseudo: false
 	},
 	{
 		symbolic: "NOP",
@@ -85,16 +93,18 @@ export const opcodes = [
 		takesImmediate: false,
 		direct: false,
 		operator: "",
-		category: "CONTROL_FLOW"
+		category: "CONTROL_FLOW",
+		pseudo: false
 	},
 	{
 		symbolic: "HLT",
-		numeric: 9,
-		takesOperand: false,
+		numeric: 4,
+		takesOperand: true,
 		takesImmediate: false,
 		direct: false,
 		operator: "",
-		category: "CONTROL_FLOW"
+		category: "CONTROL_FLOW",
+		pseudo: true
 	}
 ] as const
 
