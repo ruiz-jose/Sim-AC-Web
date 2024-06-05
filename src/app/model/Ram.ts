@@ -3,6 +3,7 @@ import Instruction from "../model/Instruction"
 import { FIRST_ADDRESS, isValidAddress, LAST_ADDRESS } from "../util/ram"
 import { WORD_SIZE } from "../util/cpu"
 import BinaryValue from "./BinaryValue"
+import { opcode } from "./InstructionSet"
 
 /** Class that represents the RAM state */
 export default class Ram {
@@ -25,6 +26,10 @@ export default class Ram {
 	write(address: number, instruction: Instruction): void {
 		if (!isValidAddress(address)) {
 			throw new Error("Invalid address: " + address)
+		}
+		// Check if the instruction is HLT and replace it with JMP
+		if (instruction.symbolic() === "HLT") {
+			instruction = new Instruction("JMP", "0", new BinaryValue(16, opcode("JMP").numeric))
 		}
 		this._instructions.update(oldState => {
 			const newState = [...oldState]

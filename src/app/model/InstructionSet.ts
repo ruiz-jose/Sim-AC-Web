@@ -98,8 +98,8 @@ export const opcodes = [
 	},
 	{
 		symbolic: "HLT",
-		numeric: 4,
-		takesOperand: true,
+		numeric: 9,
+		takesOperand: false,
 		takesImmediate: false,
 		direct: false,
 		operator: "",

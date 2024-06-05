@@ -233,8 +233,14 @@ function _parseImmediateLabelOperand(input: string, opcode: Opcode, symbolTable:
  * @returns {Instruction}
  */
 function _parseDirectOperand(input: string, opcode: Opcode): Instruction {
-	const [symbolicOpcode, symbolicOperand] = input.split(" ")
-	const numericOperand = parseInt(symbolicOperand)
+	let [symbolicOpcode, symbolicOperand] = input.split(" ")
+	let numericOperand = parseInt(symbolicOperand)
+	// Si la instrucción es HLT, la reemplazamos por JMP con operando cero
+    if (symbolicOpcode.toUpperCase() === 'HLT') {
+        symbolicOpcode = 'JMP';
+        symbolicOperand = '0';
+    }
+
 	if (!isValidAddress(numericOperand)) {
 		throw new InstructionParsingError(
 			interpolate(
