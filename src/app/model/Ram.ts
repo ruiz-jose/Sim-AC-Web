@@ -11,6 +11,7 @@ export default class Ram {
 	public readonly instructions: Readable<Instruction[]>
 	/** Writable store where the instructions are written to */
 	protected _instructions: Writable<Instruction[]>
+	replacedHltInstructions: number[] = [];
 
 	constructor() {
 		this._instructions = writable([])
@@ -37,12 +38,19 @@ export default class Ram {
 
 			
 			instruction = new Instruction("JMP", address.toString(), new BinaryValue(16,combinedBinary));
+
+			// Add the address to the replacedHltInstructions array
+			this.replacedHltInstructions.push(address);
 		}
 		this._instructions.update(oldState => {
 			const newState = [...oldState]
 			newState[address] = instruction
 			return newState
 		})
+	}
+
+	getReplacedHltInstructions(): number[] {
+		return this.replacedHltInstructions;
 	}
 
 	/**

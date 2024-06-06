@@ -17,8 +17,10 @@
 
 	let opcode: string
 	let operand: string
+	let isReplaced: boolean
 
 	$: {
+		isReplaced = $ramStore.getReplacedHltInstructions().includes(address)
 		if (instruction === Instruction.NOP) {
 			opcode = ""
 			operand = ""
@@ -143,7 +145,7 @@
 			"
 		/>
 	{:else}
-		<div class="h-[30px] w-[95px] leading-[30px] text-left pl-[10px]">{opcode}</div>
+		<div class={`h-[30px] w-[95px] leading-[30px] text-left pl-[10px] ${isReplaced ? 'replaced-hlt' : ''}`}>{opcode}</div>
 		{#if operand}
 			<div
 				class="h-[30px] w-[95px] min-w-0 leading-[30px] text-left overflow-hidden text-ellipsis whitespace-nowrap"
@@ -151,7 +153,7 @@
 				{operand}
 			</div>
 		{/if}
-	{/if}
+	{/if}	
 </div>
 
 <style lang="scss">
@@ -171,4 +173,8 @@
 			border-radius: 0 0 16px 0;
 		}
 	}
+
+	.replaced-hlt {
+        background-color: #ff0000; // Cambia esto al color que desees
+    }
 </style>
