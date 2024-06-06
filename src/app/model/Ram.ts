@@ -29,7 +29,14 @@ export default class Ram {
 		}
 		// Check if the instruction is HLT and replace it with JMP
 		if (instruction.symbolic() === "HLT") {
-			instruction = new Instruction("JMP", "0", new BinaryValue(16, opcode("JMP").numeric))
+			let jmpOpcode = opcode("JMP").numeric;
+			let jmpOpcodeBinary = jmpOpcode.toString(2).padStart(8, '0'); // Convertir a binario y rellenar con ceros a la izquierda hasta tener 8 bits
+			let addressBinary = parseInt(address.toString()).toString(2).padStart(8, '0'); // Convertir a binario y rellenar con ceros a la izquierda hasta tener 8 bits
+
+			let combinedBinary = jmpOpcodeBinary + addressBinary; // Concatenar los dos valores binarios
+
+			
+			instruction = new Instruction("JMP", address.toString(), new BinaryValue(16,combinedBinary));
 		}
 		this._instructions.update(oldState => {
 			const newState = [...oldState]
