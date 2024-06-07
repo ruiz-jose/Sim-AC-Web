@@ -111,7 +111,7 @@
 		grid
 		grid-cols-2
 		items-center
-		bg-gray-200
+		{isReplaced ? 'replaced-hlt' : 'bg-gray-200'}
 		cursor-text
 		border
 		border-black
@@ -175,6 +175,6 @@
 	}
 
 	.replaced-hlt {
-        background-color: #ff0000; // Cambia esto al color que desees
+        background-color: #f56565; // Cambia esto al color que desees
     }
 </style>
