@@ -1,6 +1,6 @@
-               LDA X               
-               ADD Y
-               STA Z
+               LDA [X]               
+               ADD [Y]
+               STA [Z]
                HLT
 X:             3
 Y:             2
