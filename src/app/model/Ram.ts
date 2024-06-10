@@ -46,7 +46,9 @@ export default class Ram {
 		
 		if (["ADD", "SUB", "LDA", "STA"].includes(instruction.symbolic())) {
 			const operand = instruction.symbolicOperand;
-			instruction = new Instruction(instruction.symbolic(), `[${operand}]`, instruction);
+			if (!operand.startsWith("[") && !operand.endsWith("]")) {
+				instruction = new Instruction(instruction.symbolic(), `[${operand}]`, instruction);
+			}
 		}
 		
 		this._instructions.update(oldState => {
