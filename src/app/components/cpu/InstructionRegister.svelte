@@ -29,14 +29,13 @@
 					operand = $instructionRegister.binaryOperand().slice(-5)
 				} else {
 					opcode = $instructionRegister.opcode.symbolic
-					if ($instructionRegister.opcode.takesOperand) {
-						if ($instructionRegister.immediateFlag()) {
-							operand = `#${$instructionRegister.numericOperand()}`
-						} else {
-							operand = `${$instructionRegister.numericOperand()}`
-						}
-					} else {
-						operand = ""
+                    if ($instructionRegister.opcode.takesOperand && ["ADD", "SUB", "LDA", "STA"].includes(opcode)) {
+                        operand = `${$instructionRegister.numericOperand()}`;
+						if (typeof operand === "string" && operand.startsWith("[") && operand.endsWith("]")) {
+                            operand = operand.slice(1, -1);  // Remove brackets
+                        }
+                    } else {
+						operand = `${$instructionRegister.numericOperand()}`;
 					}
 				}
 			}

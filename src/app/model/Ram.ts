@@ -28,6 +28,7 @@ export default class Ram {
 		if (!isValidAddress(address)) {
 			throw new Error("Invalid address: " + address)
 		}
+				
 		// Check if the instruction is HLT and replace it with JMP
 		if (instruction.symbolic() === "HLT") {
 			let jmpOpcode = opcode("JMP").numeric;
@@ -42,6 +43,12 @@ export default class Ram {
 			// Add the address to the replacedHltInstructions array
 			this.replacedHltInstructions.push(address);
 		}
+		
+		if (["ADD", "SUB", "LDA", "STA"].includes(instruction.symbolic())) {
+			const operand = instruction.symbolicOperand;
+			instruction = new Instruction(instruction.symbolic(), `[${operand}]`, instruction);
+		}
+		
 		this._instructions.update(oldState => {
 			const newState = [...oldState]
 			newState[address] = instruction

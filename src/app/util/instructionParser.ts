@@ -82,7 +82,12 @@ export function parseBinary(input: string): Instruction {
  * @returns {Instruction}
  */
 function _parseSymbolic(input: string, symbolTable: SymbolTable): Instruction {
-	const [symbolicOpcode, symbolicOperand] = input.split(" ")
+	let [symbolicOpcode, symbolicOperand] = input.split(" ")
+	
+	if (["ADD", "SUB", "LDA", "STA"].includes(symbolicOpcode) && symbolicOperand.startsWith("[") && symbolicOperand.endsWith("]")) {
+        symbolicOperand = symbolicOperand.slice(1, -1);  // Remove brackets
+	}
+
 	if (!JUST_OPCODE.test(symbolicOpcode)) {
 		throw new InstructionParsingError(
 			interpolate(text.get().errors.instruction_parsing.invalid_opcode, shorten(symbolicOpcode, 10)),
@@ -131,7 +136,11 @@ function _parseSymbolic(input: string, symbolTable: SymbolTable): Instruction {
  * @returns {Instruction}
  */
 function _parseDirectLabelOperand(input: string, opcode: Opcode, symbolTable: SymbolTable): Instruction {
-	const [symbolicOpcode, symbolicOperand] = input.split(" ")
+	let [symbolicOpcode, symbolicOperand] = input.split(" ")
+	if (["ADD", "SUB", "LDA", "STA"].includes(symbolicOpcode) && symbolicOperand.startsWith("[") && symbolicOperand.endsWith("]")) {
+        symbolicOperand = symbolicOperand.slice(1, -1);  // Remove brackets
+	}
+
 	if (!symbolTable.hasLabel(symbolicOperand)) {
 		throw new InstructionParsingError(
 			interpolate(
@@ -234,12 +243,45 @@ function _parseImmediateLabelOperand(input: string, opcode: Opcode, symbolTable:
  */
 function _parseDirectOperand(input: string, opcode: Opcode): Instruction {
 	let [symbolicOpcode, symbolicOperand] = input.split(" ")
-	let numericOperand = parseInt(symbolicOperand)
+
 	// Si la instrucción es HLT, la reemplazamos por JMP con operando cero
     if (symbolicOpcode.toUpperCase() === 'HLT') {
         symbolicOpcode = 'JMP';
         symbolicOperand = '0';
     }
+
+    // Verificar si el operando está entre corchetes
+    if (symbolicOperand.startsWith('[') && symbolicOperand.endsWith(']')) {
+        // Verificar si la instrucción es ADD, SUB, LDA o STA
+        if (['ADD', 'SUB', 'LDA', 'STA'].includes(symbolicOpcode.toUpperCase())) {
+            // Remover los corchetes y convertir a número
+            let numericOperand = parseInt(symbolicOperand.slice(1, -1));
+
+            if (!isValidAddress(numericOperand)) {
+                throw new InstructionParsingError(
+                    interpolate(
+                        text.get().errors.instruction_parsing.invalid_direct_operand,
+                        shorten(numericOperand.toString(), 10)
+                    ),
+                    input
+                )
+            }
+
+            return new Instruction(
+                symbolicOpcode,
+                symbolicOperand,
+                BinaryValue.fromBytes([opcode.numeric, numericOperand])
+            )
+        } else {
+            throw new InstructionParsingError(
+                `La instrucción ${symbolicOpcode} no puede tener un operando entre corchetes.`,
+                input
+            )
+        }
+    }
+
+    // Si el operando no está entre corchetes, procesar como antes
+    let numericOperand = parseInt(symbolicOperand)
 
 	if (!isValidAddress(numericOperand)) {
 		throw new InstructionParsingError(

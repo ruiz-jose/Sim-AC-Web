@@ -92,7 +92,13 @@
 	}
 
 	function formatInput(): void {
-		inputValue = inputValue.toUpperCase().replace(/[^A-Z0-9 _\-#\(\)]*/g, "")
+		const [instruction, operand] = inputValue.split(" ");
+		const allowedInstructions = ["ADD", "SUB", "LDA", "STA"];
+		if (allowedInstructions.includes(instruction.toUpperCase())) {
+			inputValue = inputValue.toUpperCase().replace(/[^A-Z0-9 _\-#\(\)\[\]]*/g, "");
+		} else {
+			inputValue = inputValue.toUpperCase().replace(/[^A-Z0-9 _\-#\(\)]*/g, "");
+		}
 	}
 
 	function focus(node: HTMLElement): void {
