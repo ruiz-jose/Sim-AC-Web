@@ -77,7 +77,11 @@
 			{opcode}
 		</div>
 		<div class="w-full h-[28px] leading-[30px] text-center rounded-r-md bg-gray-100" bind:this={operandDiv}>
-			{operand}
+			{#if ['ADD', 'SUB', 'LDA', 'STA'].includes(opcode)}
+           		[{operand}]
+			{:else}
+				{operand}
+			{/if}
 		</div>
 	{/if}
 </div>

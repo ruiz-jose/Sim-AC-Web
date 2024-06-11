@@ -156,7 +156,11 @@
 			<div
 				class="h-[30px] w-[95px] min-w-0 leading-[30px] text-left overflow-hidden text-ellipsis whitespace-nowrap"
 			>
+			{#if ['ADD', 'SUB', 'LDA', 'STA'].includes(opcode)}
+           		[{operand}]
+			{:else}
 				{operand}
+			{/if}
 			</div>
 		{/if}
 	{/if}	
