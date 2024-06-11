@@ -82,7 +82,7 @@ export const opcodes = [
 		takesOperand: true,
 		takesImmediate: true,
 		direct: false,
-		operator: "",
+		operator: "=",
 		category: "DATA_FLOW",
 		pseudo: false
 	},

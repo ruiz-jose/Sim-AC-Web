@@ -118,7 +118,8 @@ export function instructionToActions(instruction: Instruction): Action[] {
 			actions.push(
 				...SET_MUX,
 				...SET_ALU_OPERATION,
-				...LOAD_ALU2(instruction.immediateFlag()),
+				//...LOAD_ALU2(instruction.immediateFlag()),
+				...LOAD_ALU2(instruction.opcode.takesImmediate),
 				new ExecuteALUOperation(),
 				new Parallel(
 					new LoadValueOnBus("ALU:RES"),

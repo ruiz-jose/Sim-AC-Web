@@ -1,10 +1,10 @@
                LDA X
                SUB Y
                JC LESS
-               LDI #0
+               LDI 0
                ADD Y
                JMP ENDIF
-LESS:          LDI #1
+LESS:          LDI 1
 ENDIF:         STA Z               
                HLT
 X:             2
