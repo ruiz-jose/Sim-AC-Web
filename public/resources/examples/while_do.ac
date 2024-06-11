@@ -1,14 +1,14 @@
-               LDA X
-WHILE:         SUB DIEZ
+               LDA [X]
+WHILE:         SUB [DIEZ]
                JZ ENDWHILE
-               LDA DIEZ
-               ADD X
-               STA DIEZ
-               LDA X
-               ADD UNO
-               STA X
+               LDA [DIEZ]
+               ADD [X]
+               STA [DIEZ]
+               LDA [X]
+               ADD [UNO]
+               STA [X]
                JMP WHILE
-ENDWHILE:      STA SUMA
+ENDWHILE:      STA [SUMA]
                HLT
 X:             1
 UNO:           1

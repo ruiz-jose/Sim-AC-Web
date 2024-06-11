@@ -1,11 +1,11 @@
-               LDA X
-               SUB Y
+               LDA [X]
+               SUB [Y]
                JZ EQUAL
                LDI 0
-               ADD Y
+               ADD [Y]
                JMP ENDIF
-EQUAL:          LDI 1
-ENDIF:         STA Z               
+EQUAL:         LDI 1
+ENDIF:         STA [Z]               
                HLT
 X:             3
 Y:             3
