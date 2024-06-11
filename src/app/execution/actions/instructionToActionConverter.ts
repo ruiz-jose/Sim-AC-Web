@@ -114,6 +114,22 @@ export function instructionToActions(instruction: Instruction): Action[] {
 			actions.push(new FlashCpu("SW:N"), ...SET_PC_TO_IR_OPERAND_IF_NEGATIVE_FLAG)
 			break
 
+		case "LDI":
+			actions.push(
+				...SET_MUX,
+				...SET_ALU_OPERATION,
+				...LOAD_ALU2(instruction.immediateFlag()),
+				new ExecuteALUOperation(),
+				new Parallel(
+					new LoadValueOnBus("ALU:RES"),
+					new FlashWire("ALU:4", "ACC:2"),
+					new ReadStep("execute"),
+					new StepText("execute")
+				),
+				new SetACC().thenWaitFor(TTS_FINISHED).endstep()
+			)
+			break		
+		
 		case "NOP":
 			actions.push()
 			break

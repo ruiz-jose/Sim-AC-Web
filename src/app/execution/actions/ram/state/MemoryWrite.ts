@@ -17,8 +17,8 @@ export default class MemoryWrite extends RamAction {
 		} else {
 			// if the destination address is showing the instruction as a number
 			let operand = ctx.wires.model.data_main.get().signed().toString();
-			if (["ADD", "SUB", "LDA", "STA"].includes(prevSymbolicOpcode) && operand.startsWith("[") && operand.endsWith("]")) {
-				operand = operand.slice(1, -1);  // Remove brackets
+			if (["ADD", "SUB", "LDA", "STA"].includes(prevSymbolicOpcode)) {
+				operand = "[" + operand + "]";  // Wrap operand with brackets
 			}
 			ctx.ram.model.write(address, parseSymbolic(operand));  // Write instruction as number
 		}

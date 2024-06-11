@@ -43,14 +43,7 @@ export default class Ram {
 			// Add the address to the replacedHltInstructions array
 			this.replacedHltInstructions.push(address);
 		}
-		
-		if (["ADD", "SUB", "LDA", "STA"].includes(instruction.symbolic())) {
-			const operand = instruction.symbolicOperand;
-			if (!operand.startsWith("[") && !operand.endsWith("]")) {
-				instruction = new Instruction(instruction.symbolic(), `[${operand}]`, instruction);
-			}
-		}
-		
+
 		this._instructions.update(oldState => {
 			const newState = [...oldState]
 			newState[address] = instruction
