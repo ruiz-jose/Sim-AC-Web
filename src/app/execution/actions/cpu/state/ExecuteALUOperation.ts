@@ -27,6 +27,12 @@ export default class ExecuteALUOperation extends CpuAction {
 		switch (operation) {
 			case "+":
 				result = alu1 + alu2
+				// Actualizar la bandera N si la operación es ADD y el resultado supera 255
+				if (result > 255) {
+					cpu.negativeFlag.set(true)  
+				} else {
+					cpu.negativeFlag.set(false) 
+				}					
 				break
 			case "-":
 				result = alu1 - alu2
@@ -50,6 +56,7 @@ export default class ExecuteALUOperation extends CpuAction {
             cpu.zeroFlag.set(true)
         } else {
 			cpu.zeroFlag.set(false)
-        }
+        }	
+
 	}
 }

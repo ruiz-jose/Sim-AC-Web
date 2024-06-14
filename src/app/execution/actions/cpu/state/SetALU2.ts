@@ -9,7 +9,12 @@ export default class SetALU2 extends CpuAction {
 	}
 
 	protected async action(ctx: ExecutionContext): Promise<any> {
-		ctx.cpu.model.alu2.set(new BinaryValue(16, ctx.wires.model.data_mux_alu.get().signed()))
-		await ctx.cpu.component.flash("ALU:2")
+		let value = ctx.wires.model.data_mux_alu.get().unsigned();
+        // Si el valor es 2048, se reemplaza por cero
+        if (value === 2048) {
+            value = 0;
+        }
+        ctx.cpu.model.alu2.set(new BinaryValue(16, value))
+        await ctx.cpu.component.flash("ALU:2")
 	}
 }

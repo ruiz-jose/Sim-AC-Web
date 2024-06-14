@@ -78,17 +78,24 @@
 	}
 
 	function onAddressChange(newAddress: number): void {
-		inputValue = opcode + (operand ? ` ${operand}` : "")
+		inputValue = opcode + (operand ? ` ${formatOperand()}` : "")
 	}
 
 	function onInstructionChange(newInstruction: Instruction): void {
-		inputValue = opcode + (operand ? ` ${operand}` : "")
+		inputValue = opcode + (operand ? ` ${formatOperand()}` : "")
 	}
 
 	function onSelectedChange(isNowSelected: boolean): void {
 		if (isNowSelected) {
-			inputValue = opcode + (operand ? ` ${operand}` : "")
+			inputValue = opcode + (operand ? ` ${formatOperand()}` : "")
 		}
+	}
+
+	function formatOperand(): string {
+		if (['ADD', 'SUB', 'LDA', 'STA'].includes(opcode) && operand && !operand.startsWith("[") && !operand.endsWith("]")) {
+			return `[${operand}]`;
+		}
+		return operand;
 	}
 
 	function formatInput(): void {
@@ -156,11 +163,7 @@
 			<div
 				class="h-[30px] w-[95px] min-w-0 leading-[30px] text-left overflow-hidden text-ellipsis whitespace-nowrap"
 			>
-			{#if ['ADD', 'SUB', 'LDA', 'STA'].includes(opcode)}
-           		[{operand}]
-			{:else}
-				{operand}
-			{/if}
+			{formatOperand()}
 			</div>
 		{/if}
 	{/if}	

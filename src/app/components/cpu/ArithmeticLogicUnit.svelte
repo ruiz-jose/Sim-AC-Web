@@ -63,7 +63,7 @@
 		"
 		bind:this={operand1Div}
 	>
-		{$displayAsBinary ? splitBinString($alu1.toBinaryString()) : $alu1.signed()}
+		{$displayAsBinary ? splitBinString($alu1.toBinaryString()) : $alu1.unsigned()}
 	</div>
 	<div
 		class="
@@ -104,6 +104,6 @@
 		"
 		bind:this={operand2Div}
 	>
-		{$displayAsBinary ? splitBinString($alu2.toBinaryString().slice(-8)) : $alu2.signed()}
+		{$displayAsBinary ? splitBinString($alu2.toBinaryString().slice(-8)) : $alu2.unsigned()}
 	</div>
 </div>

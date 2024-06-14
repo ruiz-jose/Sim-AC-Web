@@ -16,10 +16,7 @@ export default class MemoryWrite extends RamAction {
 			ctx.ram.model.write(address, parseBinary(ctx.wires.model.data_main.get().toBinaryString())) // trick to write instruction as code
 		} else {
 			// if the destination address is showing the instruction as a number
-			let operand = ctx.wires.model.data_main.get().signed().toString();
-			if (["ADD", "SUB", "LDA", "STA"].includes(prevSymbolicOpcode)) {
-				operand = "[" + operand + "]";  // Wrap operand with brackets
-			}
+			let operand = ctx.wires.model.data_main.get().unsigned().toString();
 			ctx.ram.model.write(address, parseSymbolic(operand));  // Write instruction as number
 		}
 		await ctx.ram.component.flashContent(address)

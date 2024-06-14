@@ -9,6 +9,7 @@
 	import text from "../../store/text"
 	import Cpu from "../../model/Cpu"
 	import { Color } from "../../util/colors"
+	import { isUnsigned } from "../../util/binary"
 
 	export let cpu: Cpu
 	export let animationsEnabled: boolean
@@ -136,6 +137,6 @@
 			on:focusout={commitEdit}
 		/>
 	{:else}
-		{$displayAsBinary ? $accumulator.toBinaryString() : $accumulator.signed()}
+		{$displayAsBinary ? $accumulator.toBinaryString() : $accumulator.unsigned()}
 	{/if}
 </div>
