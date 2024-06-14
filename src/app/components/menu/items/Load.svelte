@@ -18,7 +18,11 @@
 			ram.clear();
 
 			const file = (await upload(".ac"))[0]
-			const program = parseProgram(await file.text())
+            const originalProgram = await file.text();
+            const translatedProgram = translateProgram(originalProgram);
+			// Mostrar translatedProgram en la consola
+			console.log(translatedProgram);
+            const program = parseProgram(translatedProgram)			
 			symbolTableStore.get().import(program.symbolTable)
 			ramStore.get().import(program.ram)
 			logger.debug("Program loaded from file", LogCategory.USER_INPUT)
@@ -27,6 +31,27 @@
 			$messageFeedStore.error(error.message)
 		}
 	}
+
+	function translateProgram(originalProgram) {
+        let codeLines = [];
+        let variableLines = [];
+        let lines = originalProgram.split('\n');
+        for (let line of lines) {
+            line = line.trim();
+            if (line.startsWith(';') || line.startsWith('SECTION')) {
+                continue;
+            }
+            if (line.includes('DB')) {
+                let parts = line.split('DB');
+                let variableName = parts[0].trim();
+                let value = parts[1].trim();
+                variableLines.push(`${variableName}: ${value}`);
+            } else {
+                codeLines.push(line);
+            }
+        }
+        return [...codeLines, ...variableLines].join('\n');
+    }
 </script>
 
 <button on:click={loadProgram}>
