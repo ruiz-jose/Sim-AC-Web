@@ -84,7 +84,7 @@ export function parseBinary(input: string): Instruction {
 function _parseSymbolic(input: string, symbolTable: SymbolTable): Instruction {
 	let [symbolicOpcode, symbolicOperand] = input.split(" ")
 	
-	if (["ADD", "SUB", "LDA", "STA"].includes(symbolicOpcode) && symbolicOperand.startsWith("[") && symbolicOperand.endsWith("]")) {
+	if (["ADD", "SUB", "LDA", "STA"].includes(symbolicOpcode)  && symbolicOperand && symbolicOperand.startsWith("[") && symbolicOperand.endsWith("]")) {
         symbolicOperand = symbolicOperand.slice(1, -1);  // Remove brackets
 	}
 
@@ -94,6 +94,7 @@ function _parseSymbolic(input: string, symbolTable: SymbolTable): Instruction {
 			input
 		)
 	}
+
 	const hasOperand = !!symbolicOperand
 	const opcode = parseOpcode(symbolicOpcode)
 	if (hasOperand) {
