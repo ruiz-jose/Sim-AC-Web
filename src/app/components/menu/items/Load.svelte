@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ramStore, symbolTableStore } from "../../../store/state"
+	import { ramStore, symbolTableStore, cpuStore } from "../../../store/state"
 	import { parseProgram } from "../../../util/programParser"
 	import logger, { LogCategory } from "../../../util/logger"
 	import { messageFeedStore } from "../../../store/state"
@@ -9,6 +9,14 @@
 
 	async function loadProgram(): Promise<void> {
 		try {
+			// Obtén las instancias de la CPU y la RAM
+			const cpu = cpuStore.get();
+			const ram = ramStore.get();
+
+			// Resetear el CPU y la RAM antes de cargar el programa
+			cpu.reset();
+			ram.clear();
+
 			const file = (await upload(".ac"))[0]
 			const program = parseProgram(await file.text())
 			symbolTableStore.get().import(program.symbolTable)
