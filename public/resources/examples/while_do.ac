@@ -1,6 +1,6 @@
                LDA [X]
 BUCLE:         SUB [DIEZ]
-               JZ SALIR_BUCLE
+               JZ SALIR_BUC
                LDA [DIEZ]
                ADD [X]
                STA [DIEZ]
@@ -8,7 +8,7 @@ BUCLE:         SUB [DIEZ]
                ADD [UNO]
                STA [X]
                JMP BUCLE
-SALIR_BUCLE:       STA [SUMA]
+SALIR_BUC:     STA [SUMA]
                HLT
 X:             1
 UNO:           1
