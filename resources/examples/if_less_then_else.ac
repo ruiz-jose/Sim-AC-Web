@@ -1,11 +1,10 @@
                LDA [X]
                SUB [Y]
-               JC LESS
+               JC ES_MENOR
                LDI 0
-               ADD [Y]
-               JMP ENDIF
-LESS:          LDI 1
-ENDIF:         STA [Z]               
+               JMP FIN
+ES_MENOR:      LDI 1
+FIN:           STA [Z]               
                HLT
 X:             2
 Y:             3
