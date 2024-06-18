@@ -25,10 +25,10 @@ export const JUST_IMMEDIATE_NUM = new RegExp(`^${IMMEDIATE_NUM.source}$`)
 export const DIRECT_PARAM = /[0-9]{1,3}/
 export const JUST_DIRECT_PARAM = new RegExp(`^${DIRECT_PARAM.source}$`)
 /** Valid label operand pattern */
-export const LABEL_PARAM = /[A-Z_]{1,10}/
+export const LABEL_PARAM = /[A-Z_]{1,15}/
 export const JUST_LABEL_PARAM = new RegExp(`^${LABEL_PARAM.source}$`)
 /** Valid immediate label operand pattern */
-export const IMMEDIATE_LABEL = /#[A-Z_]{1,10}/
+export const IMMEDIATE_LABEL = /#[A-Z_]{1,15}/
 export const JUST_IMMEDIATE_LABEL = new RegExp(`^${IMMEDIATE_LABEL.source}$`)
 // prettier-ignore
 /** Valid symbolic instruction pattern */
