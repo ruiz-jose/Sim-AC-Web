@@ -5,7 +5,7 @@ import text from "../store/text"
 /** The minimum length of a valid label */
 export const MIN_LABEL_LENGTH = 1
 /** The maximum length of a valid label */
-export const MAX_LABEL_LENGTH = 10
+export const MAX_LABEL_LENGTH = 15
 /** A regexp that describes all the characters allowed in a label */
 export const ALLOWED_CHARS = /[A-Z_]/
 /** A regexp that describes all the characters not allowed in a label */

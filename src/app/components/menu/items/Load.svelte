@@ -36,6 +36,7 @@
         let codeLines = [];
         let variableLines = [];
         let lines = originalProgram.split('\n');
+		let translated_program = "";
         for (let line of lines) {
             line = line.trim();
             if (line.startsWith(';') || line.startsWith('SECTION')) {
@@ -45,9 +46,18 @@
                 let parts = line.split('DB');
                 let variableName = parts[0].trim();
                 let value = parts[1].trim();
+				variableName = variableName.replace(":", "");
                 variableLines.push(`${variableName}: ${value}`);
             } else {
-                codeLines.push(line);
+				if (line.endsWith(':')){  // Si la línea termina con ':', es una etiqueta					
+            		translated_program = line + " ";  // Agrega un espacio en lugar de un salto de línea
+				}
+				else {
+					translated_program += line 
+					codeLines.push(translated_program);	
+					translated_program = "";  // Reinicia la variable para la siguiente línea
+				}	
+                
             }
         }
         return [...codeLines, ...variableLines].join('\n');

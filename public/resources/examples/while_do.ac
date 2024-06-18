@@ -1,14 +1,14 @@
                LDA [X]
-WHILE:         SUB [DIEZ]
-               JZ ENDWHILE
+BUCLE:         SUB [DIEZ]
+               JZ SALIR_B
                LDA [DIEZ]
                ADD [X]
                STA [DIEZ]
                LDA [X]
                ADD [UNO]
                STA [X]
-               JMP WHILE
-ENDWHILE:      STA [SUMA]
+               JMP BUCLE
+SALIR_B:       STA [SUMA]
                HLT
 X:             1
 UNO:           1

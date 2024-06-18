@@ -1,22 +1,22 @@
-LOOP:          LDA INDEX
-               SUB ARR_LENGTH
-               JZ END_LOOP
+BUCLE:         LDA INDICE
+               SUB VECTOR_LENGTH
+               JZ SALIR_BUCLE
                ADD UNO
-               STA INDEX
+               STA INDICE
                LDA SUM
-A:             ADD ARRAY
+INST:          ADD VECTOR
                STA SUM
-               LDA A
+               LDA INST
                ADD DOS
-               STA A
-               JMP LOOP
-END_LOOP:      HLT
-INDEX:         0
+               STA INST
+               JMP BUCLE
+SALIR_BUCLE:   HLT
+INDICE:        0
 SUM:           0
-ARR_LENGTH:    5
+VECTOR_LENGTH: 5
 UNO:           1
 DOS:           2
-ARRAY:         0
+VECTOR:        0
                1
                2
                3
