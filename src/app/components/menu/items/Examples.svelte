@@ -26,7 +26,7 @@
 		},
 		{
 			id: "array_sum",
-			url: "resources/examples/array_sum.cpuvs"
+			url: "resources/examples/array_sum.ac"
 		}
 	] as const
 
