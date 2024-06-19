@@ -6,24 +6,14 @@
 
 <Section title={$text.sections.examples.subsections.if_equal_then_else.title}>
 	<div class="w-full flex flex-wrap justify-center gap-10">
-		<!-- prettier-ignore -->
-		<CodeBlock>
-IF (condition equal)
-THEN
-	instruction_1
-ELSE
-	instruction_2
-ENDIF
-instruction_3
-		</CodeBlock>
-		<!-- prettier-ignore -->
+		
 		<CodeBlock>
 X = 3
 Y = 3
 Z = 0
-if X == Y: # condición ==
+Si (X == Y):   # Igual ==
 	Z = 1
-else:
+Sino:
 	Z = 0
 
 		</CodeBlock>
@@ -32,12 +22,12 @@ else:
 			<!-- &zwnj; is there so that leading whitespaces are not removed, it should be an invisible character -->
 &zwnj;               LDA X
                SUB Y
-               JZ THEN
+               JZ Es_Igual
 	           LDI #0
                ADD Y
-               JMP ENDIF
-THEN:          LDI #1
-ENDIF:         STA Z               
+               JMP Fin
+Es_Igual:      LDI #1
+Fin:         STA Z               
                HLT
 X:             3
 Y:             3
@@ -47,22 +37,13 @@ Z:             0
 </Section>
 <Section title={$text.sections.examples.subsections.if_less_then_else.title}>
 	<div class="w-full flex flex-wrap justify-center gap-10">
-		<!-- prettier-ignore -->
-		<CodeBlock>
-IF (condition less)
-THEN
-	instruction_1
-ELSE
-	instruction_2
-ENDIF
-instruction_3
-		</CodeBlock>
+
 		<!-- prettier-ignore -->
 		<CodeBlock>
 X = 2
 Y = 3
 C = 0
-if X less Y:    # condición menor
+if (X &lt; Y):    # c menor
 	C = 1
 else:
 	C = 0
@@ -72,12 +53,12 @@ else:
 			<!-- &zwnj; is there so that leading whitespaces are not removed, it should be an invisible character -->
 &zwnj;               LDA X
                SUB Y
-               JC LESS
+               JC Es_Menor
 	           LDI #0
                ADD Y
-               JMP ENDIF
-LESS:          LDI #1
-ENDIF:         STA Z               
+               JMP Fin
+Es_Menor:      LDI #1
+Fin:         STA Z               
                HLT
 X:             2
 Y:             3
@@ -87,15 +68,7 @@ Z:             0
 </Section>
 <Section title={$text.sections.examples.subsections.do_while.title}>
 	<div class="w-full flex flex-wrap justify-center gap-10">
-		<!-- prettier-ignore -->
-		<CodeBlock>
-instruction_1
-WHILE (condition)
-DO
-	instruction_2
-	instruction_3
-ENDWHILE
-		</CodeBlock>
+
 		<!-- prettier-ignore -->
 		<CodeBlock>
 X = 1
@@ -109,16 +82,16 @@ while X != 10:  # sumar númemros del 1 al 9
 		<CodeBlock>
 			<!-- &zwnj; is there so that leading whitespaces are not removed, it should be an invisible character -->
 &zwnj;               LDA X
-WHILE:         SUB DIEZ
-               JZ ENDWHILE
+Bucle:         SUB DIEZ
+               JZ Salir_Bucle
                LDA DIEZ
                ADD X
                STA DIEZ
                LDA X
 			   ADD UNO
 			   STA X
-               JMP WHILE
-ENDWHILE:      STA SUMA
+               JMP Bucle
+Salir_Bucle:   STA SUMA
 			   HLT	
 X:             1
 UNO:           1
