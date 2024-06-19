@@ -74,11 +74,11 @@ sections:
     title: "Ejemplos"
     subsections:
       if_equal_then_else:
-        title: "Ejemplo de IF(EQUAL)THEN-ELSE de alto nivel y su traducción"
+        title: "Ejemplo de Si (Es_igual) de alto nivel y su traducción"
       if_less_then_else:
-        title: "Ejemplo de IF(LESS)THEN-ELSE de alto nivel y su traducción"
+        title: "Ejemplo de Si (Es_Menor) de alto nivel y su traducción"
       do_while:
-        title: "Ejemplo de WHILE-DO de alto nivel y su traducción"
+        title: "Ejemplo de Mientras (Es_distinto) de alto nivel y su traducción"
 opcodes_table:
   sections_titles:
     control_flow: "Control de flujo"
