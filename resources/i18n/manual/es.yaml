@@ -66,7 +66,7 @@ sections:
           - 'LABEL: Este campo es opcional. Si se omite este campo, también se debe omitir el símbolo ":".'
           - "INSTRUCCIÓN: Este campo representa el contenido de una dirección. La sintaxis es idéntica a la utilizada para ingresar instrucciones directamente en la RAM y todo lo que se permite escribir en una celda de la RAM se puede escribir aquí (a excepción del input en valores binarios)."
           - "Los espacios y carácteres de tabulación iniciales o finales de cada línea serán ignorados."
-          - "Si el archivo que intenta cargar en CPUVS contiene un error, se mostrará un mensaje de error con los detalles del mismo en el borde superior del simulador."
+          - "Si el archivo que intenta cargar en Sim-AC contiene un error, se mostrará un mensaje de error con los detalles del mismo en el borde superior del simulador."
           - 'Un comentario se define como todo lo que sigue al símbolo ";" hasta una nueva línea.'
   ui:
     title: "Interfaz gráfica"
@@ -85,12 +85,11 @@ opcodes_table:
     data_flow: "Flujo de datos"
     arithmetic_logic: "Aritmética-Lógica"
   descriptions:
-    NOP: "Ninguna Operación, pase a la siguiente instrucción"
-    HLT: "Detener la ejecución"
+    HLT: "Detener la ejecución. Pseudo-instrucción se codifica como JMP"
     JMP: "Salto incondicional a la instrucción en la dirección de memoria X"
     JZ: "Salta si es Cero: si la Flag Z contiene el valor 1, salta a la instrucción en la dirección de memoria X; de lo contrario, pasa a la siguiente instrucción"
     JC: "Salta si es Negativo o si AC < Dato: si la Flag C contiene el valor 1, salta a la instrucción en la dirección de memoria X; de lo contrario, pasa a la siguiente instrucción"
-    LDA: "Carga contenido de la dirección de memoria [X]  en el Acumulador"
+    LDA: "Carga contenido de la dirección de memoria [X] en el Acumulador"
     STA: "Guarda el valor del Acumulador en la dirección de memoria [X]"
     ADD: "Suma el contenido de la dirección de memoria [X] al Acumulador. El Registro de Estado se actualiza"
     SUB: "Resta el contenido de la dirección de memoria [X] del Acumulador. El Registro de Estado se actualiza"   
