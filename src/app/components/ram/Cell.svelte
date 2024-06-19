@@ -163,7 +163,7 @@
 			<div
 				class="h-[30px] w-[95px] min-w-0 leading-[30px] text-left overflow-hidden text-ellipsis whitespace-nowrap"
 			>
-			{formatOperand()}
+			{$displayAsBinary?operand: formatOperand()}
 			</div>
 		{/if}
 	{/if}	
