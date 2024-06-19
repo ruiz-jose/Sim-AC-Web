@@ -88,7 +88,7 @@ export function parseProgram(input: string): ProgramParsingOutput {
  * @param {Ram} ram - The ram object that contains the instructions
  * @param {SymbolTable} symbolTable - The symbol table object that contains the labels
  */
-export function exportProgram(ram: Ram, symbolTable: SymbolTable): string {
+/*export function exportProgram(ram: Ram, symbolTable: SymbolTable): string {
 	let output = ""
 	let instruction = ""
 	let label = ""
@@ -103,6 +103,38 @@ export function exportProgram(ram: Ram, symbolTable: SymbolTable): string {
 	}
 
 	return output.replace(/\n(\s*NOP\n)*$/g, "\n").replace(/\n$/g, "") // removes all trailing NOP
+}*/
+export function exportProgram(ram: Ram, symbolTable: SymbolTable): string {
+    let output = "SECTION .DATA\n";
+    let instruction = "";
+    let label = "";
+    const indentation1 = " ";
+    let indentation2 = "";
+
+    for (let address = FIRST_ADDRESS; address <= LAST_ADDRESS; address += WORD_SIZE) {
+        instruction = ram.read(address).symbolic();
+        if (symbolTable.addressIsLabeled(address)) {
+            label = `${symbolTable.getLabel(address)}: DB`;
+            indentation2 = " ".repeat(MAX_LABEL_LENGTH + 1 - label.length);
+            output += `${indentation1}${label}${indentation2}${instruction}\n`;
+        }
+    }
+
+    output += "SECTION .TEXT\n";
+
+    for (let address = FIRST_ADDRESS; address <= LAST_ADDRESS; address += WORD_SIZE) {
+        instruction = ram.read(address).symbolic();
+        if (instruction.startsWith('JMP') && instruction.split(' ')[1] === address.toString()) {
+            instruction = 'HLT';
+        }
+        if (!symbolTable.addressIsLabeled(address)) {
+            label = "";
+            indentation2 = " ".repeat(MAX_LABEL_LENGTH + 1 - label.length);
+            output += `${indentation1}${label}${indentation2}${instruction}\n`;
+        }
+    }
+
+    return output.replace(/\n(\s*NOP\n)*$/g, "\n").replace(/\n$/g, ""); // removes all trailing NOP
 }
 
 /**
