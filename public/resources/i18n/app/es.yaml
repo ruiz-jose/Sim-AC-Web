@@ -88,20 +88,20 @@ menu:
       title: "Ver ejemplo"
       examples:
         simple_add:
-          text: "Simple add"
-          title: "Simple add"
+          text: "Z = X + Y"
+          title: "Z = X + Y"
         if_equal_then_else:
-          text: "If equal then else"
-          title: "If equal then else"
+          text: "Si (igual)"
+          title: "Si (igual)"
         if_less_then_else:
-          text: "If less then else"
-          title: "If less then else"
+          text: "Si (menor)"
+          title: "Si (menor)"
         while_do:
-          text: "While do"
-          title: "While do"
+          text: "Mientras (igual)"
+          title: "Mientras (igual)"
         array_sum:
-          text: "Suma array"
-          title: "Suma array"
+          text: "Sumar vector"
+          title: "Sumar vector"
     manual:
       text: "Manual"
       title: "Abrir manual"

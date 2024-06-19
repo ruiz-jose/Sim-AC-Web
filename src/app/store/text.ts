@@ -128,6 +128,10 @@ const _default = {
 				text: "",
 				title: "",
 				examples: {
+					simple_add: {
+						text: "",
+						title: ""
+					},
 					if_then_else: {
 						text: "",
 						title: ""
