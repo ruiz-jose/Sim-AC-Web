@@ -1,13 +1,14 @@
-BUCLE:         LDA INDICE
-               SUB TAM_VEC
-               JZ SALIR_BUC
-               ADD UNO
-               STA INDICE
-               LDA SUM
+BUCLE:         LDA SUM
 INST:          ADD VECTOR
                STA SUM
+               LDA INDICE
+               SUB TAM_VEC
+               JZ SALIR_BUC
+               LDA INDICE
+               ADD UNO
+               STA INDICE
                LDA INST
-               ADD DOS
+               ADD UNO
                STA INST
                JMP BUCLE
 SALIR_BUC:     HLT
@@ -15,9 +16,8 @@ INDICE:        0
 SUM:           0
 TAM_VEC:       5
 UNO:           1
-DOS:           2
-VECTOR:        0
+VECTOR:        4
+               3
                1
                2
-               3
-               4
+               6
