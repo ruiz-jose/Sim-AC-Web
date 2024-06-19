@@ -27,10 +27,6 @@
 		//return `${symbolic} ${binaryOpcodeWithImmediateFlagSet(opcode.numeric)}`
 		return `${symbolic}`
 	}
-
-	function binaryOpcodeWithImmediateFlagSet(opcode: number): string {
-		return setBit(numberToBinaryString(opcode, 4), IMMEDIATE_FLAG_POS, true)
-	}
 </script>
 
 <table class="text-center border-collapse shadow-lg {$$props.class}">
@@ -45,7 +41,7 @@
 		<!--<col class="w-32" />-->
 		<col class="w-[40rem] text-left" />
 	</colgroup>
-	{#each opcodes.filter(opcode => opcode.category === "CONTROL_FLOW") as opcode}
+	{#each opcodes.filter(opcode => opcode.category === "CONTROL_FLOW" && opcode.symbolic != "NOP") as opcode}
 		<tr class="bg-green-200">
 			<td>{direct(opcode)}</td>
 			<!-- <td>{immediate(opcode)}</td>-->

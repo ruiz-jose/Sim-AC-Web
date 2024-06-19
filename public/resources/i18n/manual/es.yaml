@@ -85,7 +85,6 @@ opcodes_table:
     data_flow: "Flujo de datos"
     arithmetic_logic: "Aritmética-Lógica"
   descriptions:
-    NOP: "Ninguna Operación, pase a la siguiente instrucción"
     HLT: "Detener la ejecución. Pseudo-instrucción se codifica como JMP"
     JMP: "Salto incondicional a la instrucción en la dirección de memoria X"
     JZ: "Salta si es Cero: si la Flag Z contiene el valor 1, salta a la instrucción en la dirección de memoria X; de lo contrario, pasa a la siguiente instrucción"
