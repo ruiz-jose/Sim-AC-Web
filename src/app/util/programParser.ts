@@ -10,6 +10,7 @@ import { MAX_LABEL_LENGTH, validateLabel } from "./label"
 
 const COMMENT_PATTERN = /;.*$/g
 const LABEL_PATTERN = /^.*\s?:/
+const SECTION_PATTERN = /^SECTION.*$/gm;
 
 type RawInstruction = {
 	text: string
@@ -29,7 +30,10 @@ type ProgramParsingOutput = {
 export function parseProgram(input: string): ProgramParsingOutput {
 	const ram = new Ram()
 	const symbolTable = new SymbolTable()
-	const lines = input.toUpperCase().split(/\r\n|\r|\n/g)
+	// Elimina los comentarios y las líneas que comienzan con 'SECTION'
+	const cleanedInput = input.replace(COMMENT_PATTERN, '').replace(SECTION_PATTERN, '');
+	const lines = cleanedInput.toUpperCase().split(/\r\n|\r|\n/g)
+	
 
 	const rawInstructions: RawInstruction[] = []
 
@@ -105,36 +109,37 @@ export function parseProgram(input: string): ProgramParsingOutput {
 	return output.replace(/\n(\s*NOP\n)*$/g, "\n").replace(/\n$/g, "") // removes all trailing NOP
 }*/
 export function exportProgram(ram: Ram, symbolTable: SymbolTable): string {
-    let output = "SECTION .DATA\n";
+    let outputData = "SECTION .DATA\n";
+    let outputText = "SECTION .TEXT\n";
     let instruction = "";
     let label = "";
     const indentation1 = " ";
     let indentation2 = "";
 
+    // Procesa todas las direcciones para construir la sección .DATA y preparar etiquetas para .TEXT
     for (let address = FIRST_ADDRESS; address <= LAST_ADDRESS; address += WORD_SIZE) {
         instruction = ram.read(address).symbolic();
         if (symbolTable.addressIsLabeled(address)) {
-            label = `${symbolTable.getLabel(address)}: DB`;
+            label = symbolTable.getLabel(address);
             indentation2 = " ".repeat(MAX_LABEL_LENGTH + 1 - label.length);
-            output += `${indentation1}${label}${indentation2}${instruction}\n`;
+            if (instruction.startsWith('ADD') || instruction.startsWith('SUB') || instruction.startsWith('LDA') || instruction.startsWith('STA')) {
+                // Extrae el valor asociado a la instrucción y asegúrate de que sea una etiqueta válida
+                let value = instruction.split(' ')[1];
+                if (symbolTable.hasLabel(value)) {
+                    let variableValue = symbolTable.getLabel(address); 
+                    outputData += `${indentation1}${value}: DB ${variableValue}\n`;
+                    // Modifica la instrucción para que la etiqueta aparezca entre corchetes
+                    instruction = instruction.replace(value, `[${value}]`);
+                }
+            }
         }
+        // Añade la instrucción modificada a la sección .TEXT
+        outputText += `${indentation1}${instruction}\n`;
     }
 
-    output += "SECTION .TEXT\n";
-
-    for (let address = FIRST_ADDRESS; address <= LAST_ADDRESS; address += WORD_SIZE) {
-        instruction = ram.read(address).symbolic();
-        if (instruction.startsWith('JMP') && instruction.split(' ')[1] === address.toString()) {
-            instruction = 'HLT';
-        }
-        if (!symbolTable.addressIsLabeled(address)) {
-            label = "";
-            indentation2 = " ".repeat(MAX_LABEL_LENGTH + 1 - label.length);
-            output += `${indentation1}${label}${indentation2}${instruction}\n`;
-        }
-    }
-
-    return output.replace(/\n(\s*NOP\n)*$/g, "\n").replace(/\n$/g, ""); // removes all trailing NOP
+    // Combina las secciones .DATA y .TEXT
+    let output = outputData + "\n" + outputText;
+    return output;
 }
 
 /**
