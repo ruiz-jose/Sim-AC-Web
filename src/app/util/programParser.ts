@@ -92,7 +92,7 @@ export function parseProgram(input: string): ProgramParsingOutput {
  * @param {Ram} ram - The ram object that contains the instructions
  * @param {SymbolTable} symbolTable - The symbol table object that contains the labels
  */
-/*export function exportProgram(ram: Ram, symbolTable: SymbolTable): string {
+export function exportProgram(ram: Ram, symbolTable: SymbolTable): string {
 	let output = ""
 	let instruction = ""
 	let label = ""
@@ -107,39 +107,6 @@ export function parseProgram(input: string): ProgramParsingOutput {
 	}
 
 	return output.replace(/\n(\s*NOP\n)*$/g, "\n").replace(/\n$/g, "") // removes all trailing NOP
-}*/
-export function exportProgram(ram: Ram, symbolTable: SymbolTable): string {
-    let outputData = "SECTION .DATA\n";
-    let outputText = "SECTION .TEXT\n";
-    let instruction = "";
-    let label = "";
-    const indentation1 = " ";
-    let indentation2 = "";
-
-    // Procesa todas las direcciones para construir la sección .DATA y preparar etiquetas para .TEXT
-    for (let address = FIRST_ADDRESS; address <= LAST_ADDRESS; address += WORD_SIZE) {
-        instruction = ram.read(address).symbolic();
-        if (symbolTable.addressIsLabeled(address)) {
-            label = symbolTable.getLabel(address);
-            indentation2 = " ".repeat(MAX_LABEL_LENGTH + 1 - label.length);
-            if (instruction.startsWith('ADD') || instruction.startsWith('SUB') || instruction.startsWith('LDA') || instruction.startsWith('STA')) {
-                // Extrae el valor asociado a la instrucción y asegúrate de que sea una etiqueta válida
-                let value = instruction.split(' ')[1];
-                if (symbolTable.hasLabel(value)) {
-                    let variableValue = symbolTable.getLabel(address); 
-                    outputData += `${indentation1}${value}: DB ${variableValue}\n`;
-                    // Modifica la instrucción para que la etiqueta aparezca entre corchetes
-                    instruction = instruction.replace(value, `[${value}]`);
-                }
-            }
-        }
-        // Añade la instrucción modificada a la sección .TEXT
-        outputText += `${indentation1}${instruction}\n`;
-    }
-
-    // Combina las secciones .DATA y .TEXT
-    let output = outputData + "\n" + outputText;
-    return output;
 }
 
 /**
