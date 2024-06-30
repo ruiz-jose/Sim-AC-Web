@@ -3,19 +3,21 @@
 # Sim-AC-Web
 Simulador Web Simulador arquitectura ACumulador
 
-Try it [https://ruiz-jose.github.io/Sim-AC-Web/](https://ruiz-jose.github.io/Sim-AC-Web/)
-![Sim-AC-Web](./assets/animacion.gif)  
+Pruebalo [https://ruiz-jose.github.io/Sim-AC-Web/](https://ruiz-jose.github.io/Sim-AC-Web/)
+![Sim-AC-Web](assets/animacion.gif)  
 
-## Features
+## Caracteristicas
 
-- 📖 Integrated manual
-- ✏️ Editable RAM, Program Counter, Accumulator and Status Word
-- 🎛️ Controllable execution and execution speed
-- 🔊 Togglable audio explainations of the execution
-- 📜 Togglable text explainations of the execution
-- 🏷️ Labels can be associated to addresses and used as operands inside instructions
-- 📂 Programs can be saved/loaded from human readable .cpuvs files
-- 🟢 Easy to follow and toggleable animations
-- 🔟 Toggleable binary representation of data
-- 🎨 Customizable busses and busses animations colors
-- 🌐 3 supported languages (english, spanish and italian) and more to come
+- 📖 Manual integrado
+- ✏️ RAM editable, contador de programa, acumulador y palabra de estado
+- 🎛️ Ejecución controlable y velocidad de ejecución.
+- 🔊 Explicaciones de audio alternables de la ejecución.
+- 📜 Explicaciones de texto alternables de la ejecución.
+- 🏷️ Las etiquetas se pueden asociar a direcciones y usarse como operandos dentro de instrucciones
+- 📂 Los programas se pueden guardar/cargar desde archivos .ac legibles por humanos
+- 🟢 Animaciones fáciles de seguir y alternables.
+- 🔟 Representación binaria de datos conmutable
+- 🎨 Colores de animaciones de autobuses y autobuses personalizables
+- 🌐 3 idiomas admitidos (inglés, español e italiano) y más por venir
+
+Basado en https://cpuvisualsimulator.github.io/
